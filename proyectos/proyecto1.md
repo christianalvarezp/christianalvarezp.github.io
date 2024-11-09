@@ -20,7 +20,7 @@ En este análisis, exploraremos las relaciones entre estas características.
 Puedes ver el análisis completo en el notebook interactivo o ejecutarlo tú mismo:
 
 - 📄 **[Ver Notebook en GitHub](./proyecto1.ipynb)**
-- 🚀 **[Ejecutar en Binder](https://mybinder.org/v2/gh/tu-usuario/tu-repo/main?filepath=proyectos/proyecto1.ipynb)**
+- 🚀 **[Ejecutar en Binder](https://mybinder.org/v2/gh/christianalvarezp/christianalvarezp.github.io/HEAD)**
 
 ## Resultados Destacados
 Aquí algunos de los gráficos generados en el notebook:
