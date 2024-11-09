@@ -7,4 +7,5 @@ title: "Inicio"
 
 Este es mi portafolio de ciencia de datos. Aquí presento mis proyectos interactivos.
 
-[Proyecto de Ejemplo - Análisis Exploratorio de Datos](./proyectos/proyecto1.md)
+## Proyectos
+- [Análisis Exploratorio de Datos - Iris Dataset](./proyectos/proyecto1.md)
