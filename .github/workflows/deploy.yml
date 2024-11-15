@@ -1,0 +1,33 @@
+# .github/workflows/deploy.yml
+
+name: Deploy Jupyter Book to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Cambia a la rama que uses
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'  # O la versión que prefieras
+
+      - name: Install dependencies
+        run: |
+          pip install jupyter-book
+
+      - name: Build the book
+        run: |
+          jupyter-book build libro/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./libro/_build/html

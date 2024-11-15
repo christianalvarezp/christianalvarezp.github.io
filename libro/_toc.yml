@@ -1,0 +1,9 @@
+# libro/_toc.yml
+
+format: jb-book
+root: index
+
+chapters:
+  - file: proyectos/proyecto1
+  - file: proyectos/proyecto2
+  # Añade más capítulos según tus notebooks

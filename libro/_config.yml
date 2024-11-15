@@ -1,0 +1,13 @@
+# libro/_config.yml
+
+title: "Mi Portafolio de Ciencia de Datos"
+author: "Christian Álvarez"
+language: "es"
+
+html:
+  favicon: "favicon.ico"
+  theme:
+    name: "sphinx_book_theme"
+    options:
+      logo_only: true
+      home_page_in_toc: true
