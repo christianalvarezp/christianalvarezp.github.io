@@ -1,11 +1,9 @@
-# .github/workflows/deploy.yml
-
-name: Deploy Jupyter Book to GitHub Pages
+name: Build and Deploy Jupyter Book
 
 on:
   push:
     branches:
-      - main  # Cambia a la rama que uses
+      - main  # O la rama que estés usando
 
 permissions:
   contents: write
@@ -19,22 +17,24 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.8'  # O la versión que prefieras
+          python-version: '3.8'
 
       - name: Install dependencies
         run: |
-          pip install jupyter-book
+          pip install -U jupyter-book
+          pip install sphinx_plotly_directive  # Para soportar Plotly
 
       - name: Build the book
         run: |
           jupyter-book build libro/
+
+      - name: Disable Jekyll
+        run: |
+          touch libro/_build/html/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./libro/_build/html
-          # Especifica la rama y directorio de publicación
-          publish_branch: main
-          publish_dir: ./libro/_build/html
-          destination_dir: .  # Publica en el directorio raíz
+          publish_branch: gh-pages

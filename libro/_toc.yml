@@ -5,5 +5,7 @@ root: index
 
 chapters:
   - file: proyectos/proyecto1
+    title: "Proyecto 1: Título del Proyecto"
   - file: proyectos/proyecto2
+    title: "Proyecto 2: Otro Título"
   # Añade más capítulos según tus notebooks

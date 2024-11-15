@@ -4,6 +4,9 @@ title: "Mi Portafolio de Ciencia de Datos"
 author: "Christian Álvarez"
 language: "es"
 
+execute:
+  execute_notebooks: "off"  # Desactiva la ejecución de notebooks al construir el libro
+
 html:
   favicon: "favicon.ico"
   theme:
@@ -11,3 +14,18 @@ html:
     options:
       logo_only: true
       home_page_in_toc: true
+      repository_url: "https://github.com/christianalvarezp/christianalvarezp.github.io"
+      use_repository_button: true
+      use_edit_page_button: true
+      path_to_docs: "libro"
+
+sphinx:
+  extra_extensions:
+    - sphinx_plotly_directive
+
+nb_output_stderr: show
+
+jupyter_cache:
+  notebooks:
+    unknown_mime_types:
+      - application/vnd.plotly.v1+json
