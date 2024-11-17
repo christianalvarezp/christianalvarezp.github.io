@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>title: “Título del Proyecto” &#8212; Mi Portafolio de Ciencia de Datos</title>
+    <title>Optimización No Lineal con PyTorch &#8212; Mi Portafolio de Ciencia de Datos</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -65,6 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'proyectos/proyecto2';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introducción a las Redes CapsNet" href="proyecto3.html" />
     <link rel="prev" title="title: “Título del Proyecto”" href="proyecto1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -166,7 +167,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="proyecto1.html">title: “Título del Proyecto”</a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">title: “Título del Proyecto”</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Optimización No Lineal con PyTorch</a></li>
 
 
 
@@ -177,6 +178,7 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="proyecto3.html">Proyecto 3: Capsnet</a></li>
 </ul>
 
     </div>
@@ -307,7 +309,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>title: “Título del Proyecto”</h1>
+    <h1>Optimización No Lineal con PyTorch</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -317,7 +319,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">title: “Título del Proyecto”</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Optimización No Lineal con PyTorch</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizacion-no-lineal-con-pytorch-metodo-de-punto-interior">Optimización No Lineal con PyTorch: Método de Punto Interior</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-general-de-optimizacion-no-lineal">Problema general de optimización no lineal:</a></li>
@@ -382,8 +384,8 @@
                 <article class="bd-article">
                   
   <hr class="docutils" />
-<section id="title-titulo-del-proyecto">
-<h1>title: “Título del Proyecto”<a class="headerlink" href="#title-titulo-del-proyecto" title="Link to this heading">#</a></h1>
+<section id="optimizacion-no-lineal-con-pytorch">
+<h1>Optimización No Lineal con PyTorch<a class="headerlink" href="#optimizacion-no-lineal-con-pytorch" title="Link to this heading">#</a></h1>
 </section>
 <section id="optimizacion-no-lineal-con-pytorch-metodo-de-punto-interior">
 <h1>Optimización No Lineal con PyTorch: Método de Punto Interior<a class="headerlink" href="#optimizacion-no-lineal-con-pytorch-metodo-de-punto-interior" title="Link to this heading">#</a></h1>
@@ -436,9 +438,7 @@
 <p>Para incorporar las restricciones de igualdad, se utiliza la función Lagrangiana:</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(\mathbf{x}, \boldsymbol{\lambda}) = f(\mathbf{x}) + \frac{1}{t} \phi(\mathbf{x}) + \boldsymbol{\lambda}^\top h(\mathbf{x})\]</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>•	 $\boldsymbol{\lambda} \in \mathbb{R}^p $: Multiplicadores de Lagrange asociados a las restricciones de igualdad.
-</pre></div>
-</div>
+<p><span class="math notranslate nohighlight">\(\boldsymbol{\lambda} \in \mathbb{R}^p \)</span>: Multiplicadores de Lagrange asociados a las restricciones de igualdad.</p>
 <p>Condiciones de Optimalidad (KKT)</p>
 <p>Las condiciones necesarias de optimalidad son:
 1.	Estacionariedad:</p>
@@ -492,7 +492,7 @@ h(\mathbf{x})
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Punto inicial (debe cumplir las restricciones de desigualdad)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -812,10 +812,17 @@ h(\mathbf{x})
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteración 1
-x = [1.5 1.5]
-g(x) = [ 0.        -1.5       -1.5       -4.7831855 -4.7831855]
+x = [1.7676796 1.7676796]
+g(x) = [ 0.53535914 -1.7676796  -1.7676796  -4.515506   -4.515506  ]
 h(x) = [0.]
-Función objetivo: 0.7357338666915894
+Función objetivo: 0.3591706156730652
+---
+Iteración 6
+x = [1.5000018 1.5000018]
+g(x) = [ 3.5762787e-06 -1.5000018e+00 -1.5000018e+00 -4.7831836e+00
+ -4.7831836e+00]
+h(x) = [0.]
+Función objetivo: 0.7357313632965088
 ---
 Convergencia alcanzada.
 </pre></div>
@@ -886,7 +893,7 @@ Valor óptimo de la función objetivo: 0.7357338666915894
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2285e6e5cb80f01c8931c0b5b4728312d156a51f3c8d03240abae49b0b50db0d.png" src="../_images/2285e6e5cb80f01c8931c0b5b4728312d156a51f3c8d03240abae49b0b50db0d.png" />
+<img alt="../_images/90d9d264cbc4ad462dfafee7fe4ee910a7564fbba6500eefcc0dad08331a9c50.png" src="../_images/90d9d264cbc4ad462dfafee7fe4ee910a7564fbba6500eefcc0dad08331a9c50.png" />
 </div>
 </div>
 </section>
@@ -910,7 +917,7 @@ Valor óptimo de la función objetivo: 0.7357338666915894
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9ebc9e568b99e623ce1bf197edd0b3c127fb0697ab64d55bb58e883226a7f553.png" src="../_images/9ebc9e568b99e623ce1bf197edd0b3c127fb0697ab64d55bb58e883226a7f553.png" />
+<img alt="../_images/996a0f773fd8451e8019acbd48aee839d01effae0f811ff583e98ed99193d341.png" src="../_images/996a0f773fd8451e8019acbd48aee839d01effae0f811ff583e98ed99193d341.png" />
 </div>
 </div>
 </section>
@@ -946,7 +953,7 @@ Valor óptimo de la función objetivo: 0.7357338666915894
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b98bf8441a9a19c201e19fcc2b650581f38ddf7e73f541ff52a0425b6d5fbfa7.png" src="../_images/b98bf8441a9a19c201e19fcc2b650581f38ddf7e73f541ff52a0425b6d5fbfa7.png" />
+<img alt="../_images/1e540370e2ff9b056cd0df9e4a6654409a1d0783f6b0a5bda16437efe6ad4499.png" src="../_images/1e540370e2ff9b056cd0df9e4a6654409a1d0783f6b0a5bda16437efe6ad4499.png" />
 </div>
 </div>
 </section>
@@ -1008,6 +1015,15 @@ Valor óptimo de la función objetivo: 0.7357338666915894
         <p class="prev-next-title">title: “Título del Proyecto”</p>
       </div>
     </a>
+    <a class="right-next"
+       href="proyecto3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introducción a las Redes CapsNet</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1025,7 +1041,7 @@ Valor óptimo de la función objetivo: 0.7357338666915894
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">title: “Título del Proyecto”</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Optimización No Lineal con PyTorch</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizacion-no-lineal-con-pytorch-metodo-de-punto-interior">Optimización No Lineal con PyTorch: Método de Punto Interior</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problema-general-de-optimizacion-no-lineal">Problema general de optimización no lineal:</a></li>

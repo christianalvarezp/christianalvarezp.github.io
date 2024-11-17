@@ -7,5 +7,7 @@ chapters:
   - file: proyectos/proyecto1
     title: "Proyecto 1: Título del Proyecto"
   - file: proyectos/proyecto2
-    title: "Proyecto 2: Otro Título"
+    title: "Proyecto 2: Programación no lineal con pytorch"
+  - file: proyectos/proyecto3
+    title: "Proyecto 3: Capsnet"
   # Añade más capítulos según tus notebooks
