@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Introducción a las Redes CapsNet &#8212; Mi Portafolio de Ciencia de Datos</title>
+    <title>Capsnet &#8212; Mi Portafolio de Ciencia de Datos</title>
   
   
   
@@ -159,12 +159,12 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    Bienvenido a Mi Portafolio
+                    Bienvenido a Mi Portafolio de Inteligencia Artificial y Ciencia de Datos
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="proyecto1.html">title: “Título del Proyecto”</a></li>
+<li class="toctree-l1"><a class="reference internal" href="proyecto1.html">Modelo PPO para CartPole (En desarrollo)</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="proyecto2.html">Optimización No Lineal con PyTorch</a></li>
 
@@ -177,7 +177,8 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Proyecto 3: Capsnet</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Capsnet</a></li>
+
 </ul>
 
     </div>
@@ -316,7 +317,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introducción a las Redes CapsNet</h1>
+    <h1>Capsnet</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -326,6 +327,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Capsnet</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-las-redes-capsnet">Introducción a las Redes CapsNet</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representacion-de-las-capsulas">1. Representación de las Cápsulas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enrutamiento-por-acuerdo">2. Enrutamiento por Acuerdo</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-las-predicciones">2.1 Cálculo de las predicciones</a></li>
@@ -335,6 +338,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-de-perdida">3. Función de Pérdida</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias:</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -345,7 +351,11 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-a-las-redes-capsnet">
+  <hr class="docutils" />
+<section id="capsnet">
+<h1>Capsnet<a class="headerlink" href="#capsnet" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduccion-a-las-redes-capsnet">
 <h1>Introducción a las Redes CapsNet<a class="headerlink" href="#introduccion-a-las-redes-capsnet" title="Permalink to this heading">#</a></h1>
 <p>Las <strong>Redes CapsNet</strong> son una arquitectura propuesta por Geoffrey Hinton et al., diseñadas para preservar relaciones espaciales y estructurales en los datos. A diferencia de las redes neuronales convolucionales (CNN), las CapsNet utilizan <strong>cápsulas</strong>, que son grupos de neuronas que representan tanto la probabilidad de que una entidad esté presente como sus propiedades poseídas (como orientación, tamaño, etc.).</p>
 <section id="representacion-de-las-capsulas">
@@ -833,6 +843,8 @@ weighted avg       0.99      0.99      0.99     10000
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Capsnet</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-las-redes-capsnet">Introducción a las Redes CapsNet</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representacion-de-las-capsulas">1. Representación de las Cápsulas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enrutamiento-por-acuerdo">2. Enrutamiento por Acuerdo</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-las-predicciones">2.1 Cálculo de las predicciones</a></li>
@@ -842,6 +854,9 @@ weighted avg       0.99      0.99      0.99     10000
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-de-perdida">3. Función de Pérdida</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias:</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
