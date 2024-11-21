@@ -5,7 +5,7 @@ root: index
 
 chapters:
   - file: proyectos/proyecto1
-    title: "Proyecto 1: Título del Proyecto"
+    title: "Proyecto 1: Modelo PPO para CartPole"
   - file: proyectos/proyecto2
     title: "Proyecto 2: Programación no lineal con pytorch"
   - file: proyectos/proyecto3

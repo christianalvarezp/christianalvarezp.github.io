@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>title: “Título del Proyecto” &#8212; Mi Portafolio de Ciencia de Datos</title>
+    <title>Modelo PPO para CartPole (En desarrollo) &#8212; Mi Portafolio de Ciencia de Datos</title>
   
   
   
@@ -60,11 +60,13 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'proyectos/proyecto1';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="“Optimización No Lineal con PyTorch”" href="proyecto2.html" />
-    <link rel="prev" title="Bienvenido a Mi Portafolio" href="../index.html" />
+    <link rel="next" title="Optimización No Lineal con PyTorch" href="proyecto2.html" />
+    <link rel="prev" title="Bienvenido a Mi Portafolio de Inteligencia Artificial y Ciencia de Datos" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -158,16 +160,14 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    Bienvenido a Mi Portafolio
+                    Bienvenido a Mi Portafolio de Inteligencia Artificial y Ciencia de Datos
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">title: “Título del Proyecto”</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelo PPO para CartPole (En desarrollo)</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="proyecto2.html">“Optimización No Lineal con PyTorch”</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="proyecto2.html">Optimización No Lineal con PyTorch</a></li>
 
 
 
@@ -175,6 +175,10 @@
 
 
 
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="proyecto3.html">Capsnet</a></li>
 
 </ul>
 
@@ -306,7 +310,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>title: “Título del Proyecto”</h1>
+    <h1>Modelo PPO para CartPole (En desarrollo)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -316,8 +320,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">title: “Título del Proyecto”</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos-iris-dataset">Análisis Exploratorio de Datos - Iris Dataset</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Modelo PPO para CartPole (En desarrollo)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#proximal-policy-optimization-ppo">Proximal Policy Optimization (PPO)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-matematica">Descripción matemática</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -331,45 +338,849 @@
                 <article class="bd-article">
                   
   <hr class="docutils" />
-<section id="title-titulo-del-proyecto">
-<h1>title: “Título del Proyecto”<a class="headerlink" href="#title-titulo-del-proyecto" title="Link to this heading">#</a></h1>
+<section id="modelo-ppo-para-cartpole-en-desarrollo">
+<h1>Modelo PPO para CartPole (En desarrollo)<a class="headerlink" href="#modelo-ppo-para-cartpole-en-desarrollo" title="Link to this heading">#</a></h1>
 </section>
-<section id="analisis-exploratorio-de-datos-iris-dataset">
-<h1>Análisis Exploratorio de Datos - Iris Dataset<a class="headerlink" href="#analisis-exploratorio-de-datos-iris-dataset" title="Link to this heading">#</a></h1>
-<p>En este proyecto se realiza un análisis exploratorio del conjunto de datos de Iris utilizando gráficos interactivos.</p>
-<p><a class="reference external" href="https://hub.ovh2.mybinder.org/user/christianalvare-arezp.github.io-j2lqlz7o/lab"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p><strong>Descripción:</strong>
-Este análisis explora las relaciones entre las características del sépalo y el pétalo de las flores, clasificadas por especie.</p>
+<section id="proximal-policy-optimization-ppo">
+<h1>Proximal Policy Optimization (PPO)<a class="headerlink" href="#proximal-policy-optimization-ppo" title="Link to this heading">#</a></h1>
+<p>Proximal Policy Optimization (PPO) es un algoritmo de aprendizaje por refuerzo (RL) basado en políticas que equilibra eficiencia y simplicidad. Fue introducido por OpenAI y ha ganado popularidad por su robustez y facilidad de implementación. PPO es una mejora del algoritmo Trust Region Policy Optimization (TRPO), que simplifica la actualización de políticas mediante la introducción de un enfoque basado en límites de probabilidad relativa (clip).</p>
+<section id="descripcion-matematica">
+<h2>Descripción matemática<a class="headerlink" href="#descripcion-matematica" title="Link to this heading">#</a></h2>
+<p>PPO maximiza la función de ventaja estimada  A(s, a) , restringiendo las actualizaciones de la política para evitar cambios drásticos. Formalmente, el objetivo es:</p>
+<div class="math notranslate nohighlight">
+\[L^{CLIP}(\theta) = \mathbb{E}_t \Big[ \min \Big( r_t(\theta) A_t, \text{clip}(r_t(\theta), 1 - \epsilon, 1 + \epsilon) A_t \Big) \Big]\]</div>
+<ol class="arabic simple">
+<li><p>Cálculo del ratio de probabilidad:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[r_t(\theta) = \frac{\pi_\theta(a_t | s_t)}{\pi_{\theta_{\text{old}}}(a_t | s_t)}\]</div>
+<p>donde:</p>
+<p><span class="math notranslate nohighlight">\(\pi_\theta(a_t | s_t)\)</span> : política actual que genera acción  <span class="math notranslate nohighlight">\(a_t \)</span> dado estado  <span class="math notranslate nohighlight">\(s_t\)</span> .</p>
+<p><span class="math notranslate nohighlight">\(\pi_{\theta_{\text{old}}}(a_t | s_t)\)</span> : política anterior.</p>
+<ol class="arabic simple" start="2">
+<li><p>Clip del ratio:
+Se restringen los cambios del ratio a  <span class="math notranslate nohighlight">\([1 - \epsilon, 1 + \epsilon]\)</span>  para mantener la estabilidad del aprendizaje.
+<span class="math notranslate nohighlight">\( \text{clip}(r_t(\theta), 1 - \epsilon, 1 + \epsilon)\)</span>  aplica esta restricción.</p></li>
+<li><p>Ventaja estimada <span class="math notranslate nohighlight">\(( A_t )\)</span>:
+Se calcula usando el valor esperado  <span class="math notranslate nohighlight">\(V(s_t)\)</span> :</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[A_t = \delta_t + \gamma \delta_{t+1} + \dots + \gamma^k \delta_{t+k}\]</div>
+<p>donde:</p>
+<div class="math notranslate nohighlight">
+\[\delta_t = r_t + \gamma V(s_{t+1}) - V(s_t)\]</div>
+<ol class="arabic simple" start="4">
+<li><p>Actualización del parámetro:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\theta \leftarrow \theta + \alpha \nabla_\theta L^{CLIP}(\theta)\]</div>
+<p>El objetivo es maximizar <span class="math notranslate nohighlight">\( L^{CLIP}(\theta)\)</span> , sujeto a las restricciones impuestas por el “clip”, para evitar oscilaciones inestables en la política.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">from</span> <span class="nn">torch.distributions</span> <span class="kn">import</span> <span class="n">Categorical</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">animation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definir la red de política</span>
+<span class="k">class</span> <span class="nc">PolicyNetwork</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_dim</span><span class="p">,</span> <span class="n">action_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PolicyNetwork</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">state_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">action_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">action_probs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc3</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">action_probs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definir la red de valor</span>
+<span class="k">class</span> <span class="nc">ValueNetwork</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ValueNetwork</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">state_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">state_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">state_value</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Función para recolectar trayectorias</span>
+<span class="k">def</span> <span class="nf">collect_trajectories</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy_net</span><span class="p">,</span> <span class="n">value_net</span><span class="p">,</span> <span class="n">timesteps</span><span class="p">):</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">rewards</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dones</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">log_probs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">state_values</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="n">state</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">timesteps</span><span class="p">):</span>
+        <span class="n">state_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">action_probs</span> <span class="o">=</span> <span class="n">policy_net</span><span class="p">(</span><span class="n">state_tensor</span><span class="p">)</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">Categorical</span><span class="p">(</span><span class="n">action_probs</span><span class="p">)</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+        <span class="n">log_prob</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">value_net</span><span class="p">(</span><span class="n">state_tensor</span><span class="p">)</span>
+        
+        <span class="n">next_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span>
+        
+        <span class="c1"># Almacenar los datos (desconectar log_prob)</span>
+        <span class="n">states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+        <span class="n">actions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+        <span class="n">rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
+        <span class="n">dones</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>
+        <span class="n">log_probs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">log_prob</span><span class="o">.</span><span class="n">detach</span><span class="p">())</span>
+        <span class="n">state_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">detach</span><span class="p">())</span>
+        
+        <span class="n">state</span> <span class="o">=</span> <span class="n">next_state</span>
+        <span class="k">if</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">state</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">states</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">dones</span><span class="p">,</span> <span class="n">log_probs</span><span class="p">,</span> <span class="n">state_values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calcular ventajas y retornos</span>
+<span class="k">def</span> <span class="nf">compute_gae</span><span class="p">(</span><span class="n">rewards</span><span class="p">,</span> <span class="n">state_values</span><span class="p">,</span> <span class="n">dones</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
+    <span class="n">advantages</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">gae</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">next_value</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Valor cero para el estado final</span>
+    <span class="n">state_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">sv</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">sv</span> <span class="ow">in</span> <span class="n">state_values</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rewards</span><span class="p">))):</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">dones</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">rewards</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">next_value</span> <span class="o">*</span> <span class="n">mask</span> <span class="o">-</span> <span class="n">state_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">gae</span> <span class="o">=</span> <span class="n">delta</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">gae</span> <span class="o">*</span> <span class="n">mask</span>
+        <span class="n">advantages</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">gae</span><span class="p">)</span>
+        <span class="n">next_value</span> <span class="o">=</span> <span class="n">state_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">advantages</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Función de actualización PPO</span>
+<span class="k">def</span> <span class="nf">ppo_update</span><span class="p">(</span><span class="n">policy_net</span><span class="p">,</span> <span class="n">value_net</span><span class="p">,</span> <span class="n">optimizer_policy</span><span class="p">,</span> <span class="n">optimizer_value</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">log_probs_old</span><span class="p">,</span> <span class="n">returns</span><span class="p">,</span> <span class="n">advantages</span><span class="p">,</span> <span class="n">clip_epsilon</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
+    <span class="n">log_probs_old</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">log_probs_old</span><span class="p">)</span>
+    <span class="n">returns</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+    <span class="n">advantages</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">advantages</span><span class="p">)</span>
+    <span class="n">advantages</span> <span class="o">=</span> <span class="p">(</span><span class="n">advantages</span> <span class="o">-</span> <span class="n">advantages</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">advantages</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">+</span> <span class="mf">1e-8</span><span class="p">)</span>  <span class="c1"># Normalización</span>
 
-<span class="c1"># Cargar datos</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv&quot;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">entropy_coef</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="c1"># Ajusta este valor</span>
 
-<span class="c1"># Análisis Exploratorio - Gráfico interactivo</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_width&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
-                 <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Longitud y ancho del sépalo por especie&quot;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+        <span class="c1"># Obtener las nuevas probabilidades de acción</span>
+        <span class="n">action_probs</span> <span class="o">=</span> <span class="n">policy_net</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">Categorical</span><span class="p">(</span><span class="n">action_probs</span><span class="p">)</span>
+        <span class="n">log_probs</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
+        <span class="n">entropy</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">entropy</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        
+        <span class="c1"># Calcular el ratio</span>
+        <span class="n">ratios</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_probs</span> <span class="o">-</span> <span class="n">log_probs_old</span><span class="p">)</span>
+        
+        <span class="c1"># Calcular las pérdidas</span>
+        <span class="n">surr1</span> <span class="o">=</span> <span class="n">ratios</span> <span class="o">*</span> <span class="n">advantages</span>
+        <span class="n">surr2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">ratios</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">clip_epsilon</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">clip_epsilon</span><span class="p">)</span> <span class="o">*</span> <span class="n">advantages</span>
+        <span class="n">loss_policy</span> <span class="o">=</span> <span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">surr1</span><span class="p">,</span> <span class="n">surr2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">entropy_coef</span> <span class="o">*</span> <span class="n">entropy</span>  <span class="c1"># Incluye término de entropía</span>
+        
+        <span class="c1"># Actualizar la red de política</span>
+        <span class="n">optimizer_policy</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">loss_policy</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">optimizer_policy</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        
+        <span class="c1"># Actualizar la red de valor</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">value_net</span><span class="p">(</span><span class="n">states</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+        <span class="n">loss_value</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()(</span><span class="n">values</span><span class="p">,</span> <span class="n">returns</span><span class="p">)</span>
+        
+        <span class="n">optimizer_value</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">loss_value</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">optimizer_value</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Función para probar el agente</span>
+<span class="k">def</span> <span class="nf">test_agent</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy_net</span><span class="p">,</span> <span class="n">num_episodes</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">total_rewards</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_episodes</span><span class="p">):</span>
+        <span class="n">state</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">episode_reward</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">state_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+                <span class="n">action_probs</span> <span class="o">=</span> <span class="n">policy_net</span><span class="p">(</span><span class="n">state_tensor</span><span class="p">)</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">action_probs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">next_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span>
+            <span class="n">episode_reward</span> <span class="o">+=</span> <span class="n">reward</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">next_state</span>
+        <span class="n">total_rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">episode_reward</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">total_rewards</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_episodes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Función para visualizar el agente</span>
+<span class="k">def</span> <span class="nf">visualize_agent</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy_net</span><span class="p">):</span>
+    <span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">state</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+    <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="c1"># Obtener frame del entorno</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+        <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+        
+        <span class="c1"># Seleccionar acción según la política entrenada</span>
+        <span class="n">state_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">action_probs</span> <span class="o">=</span> <span class="n">policy_net</span><span class="p">(</span><span class="n">state_tensor</span><span class="p">)</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">action_probs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        
+        <span class="c1"># Ejecutar acción en el entorno</span>
+        <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span>
+    
+    <span class="n">env</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    
+    <span class="c1"># Crear animación</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">ims</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">:</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">animated</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">ims</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">im</span><span class="p">])</span>
+    <span class="n">ani</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">ArtistAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">ims</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">ani</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;CartPole-v1&#39;</span><span class="p">)</span>
+<span class="n">state_dim</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">action_dim</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span>
+
+<span class="n">policy_net</span> <span class="o">=</span> <span class="n">PolicyNetwork</span><span class="p">(</span><span class="n">state_dim</span><span class="p">,</span> <span class="n">action_dim</span><span class="p">)</span>
+<span class="n">value_net</span> <span class="o">=</span> <span class="n">ValueNetwork</span><span class="p">(</span><span class="n">state_dim</span><span class="p">)</span>
+
+<span class="c1"># Bucle de entrenamiento principal</span>
+
+<span class="n">optimizer_policy</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">policy_net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">3e-5</span><span class="p">)</span>
+<span class="n">optimizer_value</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">value_net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+
+<span class="n">num_updates</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">timesteps_per_batch</span> <span class="o">=</span> <span class="mi">2048</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.99</span>
+<span class="n">lam</span> <span class="o">=</span> <span class="mf">0.95</span>
+<span class="n">clip_epsilon</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="c1"># Lista para almacenar recompensas promedio</span>
+<span class="n">average_rewards</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">update</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_updates</span><span class="p">):</span>
+    <span class="c1"># Recolectar trayectorias</span>
+    <span class="n">states</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">dones</span><span class="p">,</span> <span class="n">log_probs_old</span><span class="p">,</span> <span class="n">state_values</span> <span class="o">=</span> <span class="n">collect_trajectories</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy_net</span><span class="p">,</span> <span class="n">value_net</span><span class="p">,</span> <span class="n">timesteps_per_batch</span><span class="p">)</span>
+    
+    <span class="c1"># Calcular ventajas y retornos</span>
+    <span class="n">advantages</span> <span class="o">=</span> <span class="n">compute_gae</span><span class="p">(</span><span class="n">rewards</span><span class="p">,</span> <span class="n">state_values</span><span class="p">,</span> <span class="n">dones</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">lam</span><span class="p">)</span>
+    <span class="n">returns</span> <span class="o">=</span> <span class="p">[</span><span class="n">adv</span> <span class="o">+</span> <span class="n">val</span> <span class="k">for</span> <span class="n">adv</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">advantages</span><span class="p">,</span> <span class="n">state_values</span><span class="p">)]</span>
+    
+    <span class="c1"># Actualizar las redes</span>
+    <span class="n">ppo_update</span><span class="p">(</span><span class="n">policy_net</span><span class="p">,</span> <span class="n">value_net</span><span class="p">,</span> <span class="n">optimizer_policy</span><span class="p">,</span> <span class="n">optimizer_value</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">log_probs_old</span><span class="p">,</span> <span class="n">returns</span><span class="p">,</span> <span class="n">advantages</span><span class="p">,</span> <span class="n">clip_epsilon</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
+    
+    <span class="c1"># Monitorear el progreso</span>
+    <span class="k">if</span> <span class="n">update</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">total_reward</span> <span class="o">=</span> <span class="n">test_agent</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy_net</span><span class="p">)</span>
+        <span class="n">average_rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_reward</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Actualización </span><span class="si">{</span><span class="n">update</span><span class="si">}</span><span class="s1">, Recompensa Promedio: </span><span class="si">{</span><span class="n">total_reward</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actualización 0, Recompensa Promedio: 11.6
+Actualización 10, Recompensa Promedio: 81.8
+Actualización 20, Recompensa Promedio: 144.8
+Actualización 30, Recompensa Promedio: 122.2
+Actualización 40, Recompensa Promedio: 217.0
+Actualización 50, Recompensa Promedio: 184.6
+Actualización 60, Recompensa Promedio: 359.0
+Actualización 70, Recompensa Promedio: 288.6
+Actualización 80, Recompensa Promedio: 443.4
+Actualización 90, Recompensa Promedio: 370.6
+Actualización 100, Recompensa Promedio: 248.8
+Actualización 110, Recompensa Promedio: 416.4
+Actualización 120, Recompensa Promedio: 445.6
+Actualización 130, Recompensa Promedio: 281.0
+Actualización 140, Recompensa Promedio: 281.8
+Actualización 150, Recompensa Promedio: 323.4
+Actualización 160, Recompensa Promedio: 305.8
+Actualización 170, Recompensa Promedio: 289.4
+Actualización 180, Recompensa Promedio: 268.0
+Actualización 190, Recompensa Promedio: 240.0
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_width&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
-                 <span class="n">animation_frame</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Animación por Especie&quot;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Graficar las recompensas</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_updates</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">average_rewards</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actualización&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Recompensa Promedio&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Rendimiento del Agente durante el Entrenamiento&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="../_images/700a85a48acd11dc62f8166e05a02c5b681895c7d7d33adab59bdfe29e54b5d7.png" src="../_images/700a85a48acd11dc62f8166e05a02c5b681895c7d7d33adab59bdfe29e54b5d7.png" />
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;CartPole-v1&#39;</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="s1">&#39;rgb_array&#39;</span><span class="p">)</span>
+<span class="n">visualize_agent</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">policy_net</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/christian/.pyenv/versions/3.9.7/lib/python3.9/site-packages/gym/utils/passive_env_checker.py:233: DeprecationWarning: `np.bool8` is a deprecated alias for `np.bool_`.  (Deprecated NumPy 1.24)
+  if not isinstance(terminated, (bool, np.bool8)):
+</pre></div>
+</div>
+<div class="output text_html"><video width="640" height="480" controls autoplay loop>
+  <source type="video/mp4" src="data:video/mp4;base64,AAAAIGZ0eXBNNFYgAAACAE00ViBpc29taXNvMmF2YzEAAAAIZnJlZQAAW2NtZGF0AAACrwYF//+r
+3EXpvebZSLeWLNgg2SPu73gyNjQgLSBjb3JlIDE2NCByMzEwOCAzMWUxOWY5IC0gSC4yNjQvTVBF
+Ry00IEFWQyBjb2RlYyAtIENvcHlsZWZ0IDIwMDMtMjAyMyAtIGh0dHA6Ly93d3cudmlkZW9sYW4u
+b3JnL3gyNjQuaHRtbCAtIG9wdGlvbnM6IGNhYmFjPTEgcmVmPTMgZGVibG9jaz0xOjA6MCBhbmFs
+eXNlPTB4MzoweDExMyBtZT1oZXggc3VibWU9NyBwc3k9MSBwc3lfcmQ9MS4wMDowLjAwIG1peGVk
+X3JlZj0xIG1lX3JhbmdlPTE2IGNocm9tYV9tZT0xIHRyZWxsaXM9MSA4eDhkY3Q9MSBjcW09MCBk
+ZWFkem9uZT0yMSwxMSBmYXN0X3Bza2lwPTEgY2hyb21hX3FwX29mZnNldD0tMiB0aHJlYWRzPTEy
+IGxvb2thaGVhZF90aHJlYWRzPTIgc2xpY2VkX3RocmVhZHM9MCBucj0wIGRlY2ltYXRlPTEgaW50
+ZXJsYWNlZD0wIGJsdXJheV9jb21wYXQ9MCBjb25zdHJhaW5lZF9pbnRyYT0wIGJmcmFtZXM9MyBi
+X3B5cmFtaWQ9MiBiX2FkYXB0PTEgYl9iaWFzPTAgZGlyZWN0PTEgd2VpZ2h0Yj0xIG9wZW5fZ29w
+PTAgd2VpZ2h0cD0yIGtleWludD0yNTAga2V5aW50X21pbj0yMCBzY2VuZWN1dD00MCBpbnRyYV9y
+ZWZyZXNoPTAgcmNfbG9va2FoZWFkPTQwIHJjPWNyZiBtYnRyZWU9MSBjcmY9MjMuMCBxY29tcD0w
+LjYwIHFwbWluPTAgcXBtYXg9NjkgcXBzdGVwPTQgaXBfcmF0aW89MS40MCBhcT0xOjEuMDAAgAAA
+AdhliIQAM//+9uy+BTX9n9CXESzF2kpwPiqkgIB3NMAAA7ApAAADAABhlyK79Sn3oE8AAAMAS0AR
+wGiDtCuiLiECODPEsIUPBd/zMRW2AH1UNjPyIeD/8MMEeMT9x9l7TIULkhX0SZIQIv2Hzz1QcknT
+jxo+nCYbmu6Vn4xFGNQOn5Vju9va7wf0Dwxa5FGVWGFa1YDxghkTkAu9tBhNtvd/9SpDwAdcGBHk
+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
+AAAAAAAoAAACQABVxAAAAAAALWhkbHIAAAAAAAAAAHZpZGUAAAAAAAAAAAAAAABWaWRlb0hhbmRs
+ZXIAAAAO821pbmYAAAAUdm1oZAAAAAEAAAAAAAAAAAAAACRkaW5mAAAAHGRyZWYAAAAAAAAAAQAA
+AAx1cmwgAAAAAQAADrNzdGJsAAAAt3N0c2QAAAAAAAAAAQAAAKdhdmMxAAAAAAAAAAEAAAAAAAAA
+AAAAAAAAAAAAAoAB4ABIAAAASAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAGP//AAAANWF2Y0MBZAAe/+EAGGdkAB6s2UCgPaEAAAMAAQAAAwAoDxYtlgEABmjr48siwP34
++AAAAAAcdXVpZGtoQPJfJE/FujmlG88DI/MAAAAAAAAAGHN0dHMAAAAAAAAAAQAAASAAAAIAAAAA
+GHN0c3MAAAAAAAAAAgAAAAEAAAD7AAAJAGN0dHMAAAAAAAABHgAAAAEAAAQAAAAAAQAACgAAAAAB
+AAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEA
+AAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAA
+AgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAABAAAA
+AAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAKAAAAAAEAAAQA
+AAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAA
+AAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAA
+AAEAAAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAA
+AQAAAgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAAB
+AAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAKAAAAAAEA
+AAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAA
+CgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAAC
+AAAAAAEAAAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAA
+AAAAAQAAAgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAA
+AAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAKAAAA
+AAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAA
+AQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAAB
+AAACAAAAAAEAAAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEA
+AAAAAAAAAQAAAgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAA
+BAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAK
+AAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIA
+AAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAA
+AAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAA
+AAEAAAAAAAAAAQAAAgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAA
+AQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAAB
+AAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAABAAAAAAAAAAEA
+AAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAKAAAAAAEAAAQAAAAAAQAA
+AAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAE
+AAAAAAEAAAAAAAAAAQAAAgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoA
+AAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAA
+AAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAABAAAAAAAA
+AAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAKAAAAAAEAAAQAAAAA
+AQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAAB
+AAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEA
+AAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAA
+AgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAIAAAQAAAAAAQAACgAAAAABAAAE
+AAAAAAEAAAAAAAAAAQAAAgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoA
+AAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAA
+AAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAABAAAAAAAA
+AAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAKAAAAAAEAAAQAAAAA
+AQAAAAAAAAABAAACAAAAAAEAAAgAAAAAAgAAAgAAAAABAAAGAAAAAAEAAAIAAAAAHHN0c2MAAAAA
+AAAAAQAAAAEAAAEgAAAAAQAABJRzdHN6AAAAAAAAAAAAAAEgAAAEjwAAAIEAAAAiAAAAFAAAACEA
+AAAcAAAANgAAAB0AAAAdAAAAcgAAACMAAAAtAAAALwAAALwAAAAsAAAALgAAABQAAACNAAAAJwAA
+ACgAAAAUAAAAfwAAACMAAAAmAAAAFAAAAJQAAAAkAAAAJwAAABQAAACqAAAAKAAAACEAAAAcAAAA
+jgAAADUAAAAdAAAAHQAAAKUAAAApAAAAFAAAACoAAACLAAAAJwAAABQAAAAiAAAAagAAACUAAAAo
+AAAAFAAAAEcAAAAnAAAAFQAAAB8AAACkAAAAJQAAABYAAAAhAAAAlAAAACQAAAAUAAAAIgAAAHEA
+AAA2AAAAJwAAACsAAABWAAAAJwAAABkAAAAdAAAAmgAAACkAAAAUAAAAIQAAAI4AAAAmAAAAFAAA
+ACIAAABKAAAAMgAAACkAAAAiAAAAegAAACQAAAAUAAAAIQAAAEUAAAAvAAAAJQAAACEAAAC4AAAA
+QAAAAB8AAAAkAAAAegAAACIAAAAUAAAAIQAAAE8AAAAdAAAAGwAAABQAAABWAAAAHgAAABoAAAAV
+AAAAgAAAACMAAAAfAAAAFQAAAEMAAABJAAAAJgAAACEAAABxAAAALgAAADMAAAAdAAAAngAAADgA
+AAAlAAAAGgAAAIgAAAApAAAAJAAAAB4AAAB/AAAAKAAAACIAAAAUAAAAkQAAACQAAAAmAAAAFAAA
+AK8AAABBAAAAIQAAACMAAACmAAAAOAAAAB4AAAAmAAAAkQAAAD4AAAAcAAAAJAAAAJIAAAApAAAA
+FAAAACkAAAC7AAAALAAAABYAAAAsAAAAwwAAAEQAAAAgAAAAJgAAAGcAAAAxAAAAHgAAAB0AAADA
+AAAANQAAAC4AAAAeAAAAywAAAEYAAAA0AAAAOwAAALgAAABXAAAANgAAADgAAACdAAAAWQAAADEA
+AAA3AAAAqAAAAEkAAAAzAAAAMQAAAMUAAABPAAAAQgAAADoAAAB7AAAAdwAAAEEAAAA4AAAAwgAA
+AFMAAAAwAAAAMgAAAJ4AAAA8AAAAMQAAADkAAACfAAAAUQAAAD4AAABNAAAAwQAAAFoAAABMAAAA
+OAAAAG8AAABbAAAAQAAAAEYAAAChAAAARwAAADkAAAAyAAAA3AAAAHIAAABNAAAATgAAAJ0AAABv
+AAAAQQAAAFEAAACcAAAATgAAAEQAAAA/AAAAoAAAAFIAAAA7AAAAQgAAAL0AAABPAAAAQwAAAE4A
+AACjAAAAOAAAADkAAABFAAAAvgAAAF4AAABJAAAAPAAAAKcAAABFAAAANwAAAEsAAADDAAAARgAA
+AGoAAABGAAAAZAAAAskAAAB9AAAARQAAAGkAAABiAAAAnwAAAEUAAABcAAAAVAAAAMIAAABDAAAA
+NQAAAEAAAAC4AAAASgAAAFcAAAA3AAAAngAAAEYAAABaAAAARQAAAHcAAABhAAAAQgAAAEUAAACA
+AAAARQAAAFoAAAA6AAAArAAAAFgAAABBAAAAVAAAANMAAABcAAAASwAAAHEAAABYAAAAFHN0Y28A
+AAAAAAAAAQAAADAAAABhdWR0YQAAAFltZXRhAAAAAAAAACFoZGxyAAAAAAAAAABtZGlyYXBwbAAA
+AAAAAAAAAAAAACxpbHN0AAAAJKl0b28AAAAcZGF0YQAAAAEAAAAATGF2ZjYxLjcuMTAw
+">
+  Your browser does not support the video tag.
+</video></div></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -408,7 +1219,7 @@ Este análisis explora las relaciones entre las características del sépalo y e
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Bienvenido a Mi Portafolio</p>
+        <p class="prev-next-title">Bienvenido a Mi Portafolio de Inteligencia Artificial y Ciencia de Datos</p>
       </div>
     </a>
     <a class="right-next"
@@ -416,7 +1227,7 @@ Este análisis explora las relaciones entre las características del sépalo y e
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">“Optimización No Lineal con PyTorch”</p>
+        <p class="prev-next-title">Optimización No Lineal con PyTorch</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -437,8 +1248,11 @@ Este análisis explora las relaciones entre las características del sépalo y e
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">title: “Título del Proyecto”</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos-iris-dataset">Análisis Exploratorio de Datos - Iris Dataset</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Modelo PPO para CartPole (En desarrollo)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#proximal-policy-optimization-ppo">Proximal Policy Optimization (PPO)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-matematica">Descripción matemática</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>
