@@ -21,6 +21,9 @@ En este espacio presento proyectos interactivos que destacan por ser distintos d
 - **Resolución de Problemas de Optimización No Lineal**  
   Aplicación de **Pytorch** para resolver problemas de optimización no lineal utilizando un enfoque de **método de punto interior**, integrando matemáticas avanzadas y aprendizaje automático.
 
+- **Estimacion de parámetros de ecuaciones diferenciales estocásticas**  
+  Mediante el uso de simulación, estimación tipo nucleo de la densidad y algoritmos genéticos, busco encontrar una buena estimación de tres de las ecuaciones diferenciales estocásticas más comunes.
+
 Y muchos más proyectos en desarrollo que desafían los límites de lo convencional en inteligencia artificial.
 
 

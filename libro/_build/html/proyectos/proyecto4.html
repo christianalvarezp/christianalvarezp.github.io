@@ -1,0 +1,1489 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Estimación de Parámetros en Ecuaciones Diferenciales Estocásticas (En desarrollo) &#8212; Mi Portafolio de Ciencia de Datos</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'proyectos/proyecto4';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Capsnet" href="proyecto3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Mi Portafolio de Ciencia de Datos</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Bienvenido a Mi Portafolio de Inteligencia Artificial y Ciencia de Datos
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="proyecto1.html">Modelo PPO para CartPole (En desarrollo)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="proyecto2.html">Optimización No Lineal con PyTorch</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="proyecto3.html">Capsnet</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Estimación de Parámetros en Ecuaciones Diferenciales Estocásticas (En desarrollo)</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/proyectos/proyecto4.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Estimación de Parámetros en Ecuaciones Diferenciales Estocásticas (En desarrollo)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Estimación de Parámetros en Ecuaciones Diferenciales Estocásticas (En desarrollo)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-parametros-en-ecuaciones-diferenciales-estocasticas">Estimación de Parámetros en Ecuaciones Diferenciales Estocásticas</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-las-ecuaciones-diferenciales-estocasticas-ede">1. Introducción a las Ecuaciones Diferenciales Estocásticas (EDE)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#movimiento-browniano-geometrico-gbm">1.1 Movimiento Browniano Geométrico (GBM)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#movimiento-browniano-aritmetico-abm">1.2 Movimiento Browniano Aritmético (ABM)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proceso-de-ornstein-uhlenbeck-reversion-a-la-media">1.3 Proceso de Ornstein-Uhlenbeck (Reversión a la Media)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-euler-maruyama">2. Método de Euler-Maruyama</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-en-python">3. Implementación en Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.2.1 Movimiento Browniano Geométrico (GBM)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2.2 Movimiento Browniano Aritmético (ABM)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proceso-de-ornstein-uhlenbeck">3.2.3 Proceso de Ornstein-Uhlenbeck</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simular-trayectorias">3.3 Simular Trayectorias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-las-trayectorias">3.4 Visualización de las Trayectorias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-parametros-en-ecuaciones-diferenciales-estocasticas-con-algoritmos-geneticos">4. Estimación de Parámetros en Ecuaciones Diferenciales Estocásticas con Algoritmos Genéticos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-funciones-de-densidad">4.1 Construcción de Funciones de Densidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-de-verosimilitud">4.2 Función de Verosimilitud</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-parametros-mediante-algoritmos-geneticos">4.3 Estimación de Parámetros mediante Algoritmos Genéticos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-los-algoritmos-geneticos">4.3.1 Introducción a los Algoritmos Genéticos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-del-algoritmo-genetico">4.4 Implementación del Algoritmo Genético</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-la-funcion-de-aptitud">4.4.1 Definición de la Función de Aptitud</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-del-ag">4.4.2 Implementación del AG</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizacion-de-parametros-con-el-ag">4.5 Optimización de Parámetros con el AG</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.5.1 Movimiento Browniano Geométrico (GBM)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.5.2 Movimiento Browniano Aritmético (ABM)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proceso-de-ornstein-uhlenbeck-ou">4.5.3 Proceso de Ornstein-Uhlenbeck (OU)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-la-log-verosimilitud">4.5.4 Cálculo de la Log-Verosimilitud</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generar-multiples-simulaciones-con-parametros-estimados">4.6 Generar múltiples simulaciones con parámetros estimados</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-verosimilitud-exactas">4.7 Funciones de verosimilitud exactas</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <hr class="docutils" />
+<section id="estimacion-de-parametros-en-ecuaciones-diferenciales-estocasticas-en-desarrollo">
+<h1>Estimación de Parámetros en Ecuaciones Diferenciales Estocásticas (En desarrollo)<a class="headerlink" href="#estimacion-de-parametros-en-ecuaciones-diferenciales-estocasticas-en-desarrollo" title="Link to this heading">#</a></h1>
+</section>
+<section id="estimacion-de-parametros-en-ecuaciones-diferenciales-estocasticas">
+<h1>Estimación de Parámetros en Ecuaciones Diferenciales Estocásticas<a class="headerlink" href="#estimacion-de-parametros-en-ecuaciones-diferenciales-estocasticas" title="Link to this heading">#</a></h1>
+<p>En esta sección, exploraremos cómo simular y estimar parámetros en modelos estocásticos comunes, específicamente:</p>
+<p>•	Movimiento Browniano Geométrico (GBM)</p>
+<p>•	Movimiento Browniano Aritmético (ABM)</p>
+<p>•	Proceso de Reversión a la Media (Proceso de Ornstein-Uhlenbeck)</p>
+<p>Usaremos el método de Euler-Maruyama para simular trayectorias de estos procesos y aplicaremos técnicas de estimación para ajustar los parámetros basándonos en la función de verosimilitud.</p>
+<p>Para acelerar las simulaciones, utilizaremos numba y su decorador &#64;njit.</p>
+<section id="introduccion-a-las-ecuaciones-diferenciales-estocasticas-ede">
+<h2>1. Introducción a las Ecuaciones Diferenciales Estocásticas (EDE)<a class="headerlink" href="#introduccion-a-las-ecuaciones-diferenciales-estocasticas-ede" title="Link to this heading">#</a></h2>
+<p>Las EDE son ecuaciones diferenciales que incorporan términos aleatorios, típicamente modelados como movimiento browniano o ruido blanco. Son fundamentales en áreas como finanzas, física y biología para modelar sistemas donde hay incertidumbre o aleatoriedad inherente.</p>
+<section id="movimiento-browniano-geometrico-gbm">
+<h3>1.1 Movimiento Browniano Geométrico (GBM)<a class="headerlink" href="#movimiento-browniano-geometrico-gbm" title="Link to this heading">#</a></h3>
+<p>El GBM es ampliamente utilizado para modelar precios de activos en finanzas. Su ecuación diferencial estocástica es:</p>
+<div class="math notranslate nohighlight">
+\[dS_t = \mu S_t dt + \sigma S_t dW_t\]</div>
+<p>donde:</p>
+<p><span class="math notranslate nohighlight">\(\quad\quad\)</span> •	 <span class="math notranslate nohighlight">\(S_t\)</span>  es el precio del activo en el tiempo  t .</p>
+<p><span class="math notranslate nohighlight">\(\quad\quad\)</span> •	 <span class="math notranslate nohighlight">\(\mu\)</span>  es la tasa de crecimiento media.</p>
+<p><span class="math notranslate nohighlight">\(\quad\quad\)</span> •	 <span class="math notranslate nohighlight">\(\sigma\)</span>  es la volatilidad.</p>
+<p><span class="math notranslate nohighlight">\(\quad\quad\)</span> •	 <span class="math notranslate nohighlight">\(W_t\)</span>  es un proceso de Wiener (movimiento browniano estándar).</p>
+</section>
+<section id="movimiento-browniano-aritmetico-abm">
+<h3>1.2 Movimiento Browniano Aritmético (ABM)<a class="headerlink" href="#movimiento-browniano-aritmetico-abm" title="Link to this heading">#</a></h3>
+<p>El ABM es una simplificación donde el término de difusión no depende del valor del proceso:</p>
+<div class="math notranslate nohighlight">
+\[dX_t = \mu dt + \sigma dW_t\]</div>
+</section>
+<section id="proceso-de-ornstein-uhlenbeck-reversion-a-la-media">
+<h3>1.3 Proceso de Ornstein-Uhlenbeck (Reversión a la Media)<a class="headerlink" href="#proceso-de-ornstein-uhlenbeck-reversion-a-la-media" title="Link to this heading">#</a></h3>
+<p>Este proceso modela variables que tienden a regresar a una media a lo largo del tiempo:</p>
+<div class="math notranslate nohighlight">
+\[dX_t = \theta (\mu - X_t) dt + \sigma dW_t\]</div>
+<p>donde:</p>
+<p><span class="math notranslate nohighlight">\(\quad\quad\)</span> •	 <span class="math notranslate nohighlight">\(\theta\)</span>  es la velocidad de reversión a la media.</p>
+<p><span class="math notranslate nohighlight">\(\quad\quad\)</span> •	 <span class="math notranslate nohighlight">\(\mu\)</span>  es el nivel medio al que el proceso tiende a revertir.</p>
+</section>
+</section>
+<section id="metodo-de-euler-maruyama">
+<h2>2. Método de Euler-Maruyama<a class="headerlink" href="#metodo-de-euler-maruyama" title="Link to this heading">#</a></h2>
+<p>El método de Euler-Maruyama es una extensión del método de Euler para resolver EDEs numéricamente. La idea es discretizar el tiempo y aproximar los incrementos del proceso browniano.</p>
+<p>Para un EDE general:</p>
+<div class="math notranslate nohighlight">
+\[dX_t = a(X_t, t) dt + b(X_t, t) dW_t\]</div>
+<p>La aproximación de Euler-Maruyama es:</p>
+<div class="math notranslate nohighlight">
+\[X_{t+\Delta t} = X_t + a(X_t, t) \Delta t + b(X_t, t) \Delta W_t\]</div>
+<p>donde  <span class="math notranslate nohighlight">\(\Delta W_t\)</span>  es un incremento del movimiento browniano, que en la práctica se simula como:</p>
+<div class="math notranslate nohighlight">
+\[\Delta W_t = \sqrt{\Delta t} \cdot \varepsilon\]</div>
+<p>con  <span class="math notranslate nohighlight">\(\varepsilon \sim N(0,1)\)</span> .</p>
+</section>
+<section id="implementacion-en-python">
+<h2>3. Implementación en Python<a class="headerlink" href="#implementacion-en-python" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">njit</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">gaussian_kde</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>3.2.1 Movimiento Browniano Geométrico (GBM)<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@njit</span>
+<span class="k">def</span> <span class="nf">simulate_gbm</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="n">N</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">S0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="n">dW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">))</span>
+        <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">+</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">dW</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="n">S</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>3.2.2 Movimiento Browniano Aritmético (ABM)<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@njit</span>
+<span class="k">def</span> <span class="nf">simulate_abm</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="n">N</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">X0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="n">dW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">))</span>
+        <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">+</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">dW</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="n">X</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="proceso-de-ornstein-uhlenbeck">
+<h3>3.2.3 Proceso de Ornstein-Uhlenbeck<a class="headerlink" href="#proceso-de-ornstein-uhlenbeck" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@njit</span>
+<span class="k">def</span> <span class="nf">simulate_ou</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="n">N</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">X0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="n">dW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">))</span>
+        <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">theta</span> <span class="o">*</span> <span class="p">(</span><span class="n">mu</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">+</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">dW</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="n">X</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="simular-trayectorias">
+<h3>3.3 Simular Trayectorias<a class="headerlink" href="#simular-trayectorias" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parámetros comunes</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># Tiempo total</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Número de pasos</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># Para reproducibilidad</span>
+
+<span class="c1"># GBM</span>
+<span class="n">S0</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">mu_gbm</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">sigma_gbm</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">t_gbm</span><span class="p">,</span> <span class="n">S_gbm</span> <span class="o">=</span> <span class="n">simulate_gbm</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span> <span class="n">mu_gbm</span><span class="p">,</span> <span class="n">sigma_gbm</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># ABM</span>
+<span class="n">X0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">mu_abm</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">sigma_abm</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">t_abm</span><span class="p">,</span> <span class="n">X_abm</span> <span class="o">=</span> <span class="n">simulate_abm</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">mu_abm</span><span class="p">,</span> <span class="n">sigma_abm</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># OU</span>
+<span class="n">X0_ou</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">theta_ou</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">mu_ou</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">sigma_ou</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">t_ou</span><span class="p">,</span> <span class="n">X_ou</span> <span class="o">=</span> <span class="n">simulate_ou</span><span class="p">(</span><span class="n">X0_ou</span><span class="p">,</span> <span class="n">theta_ou</span><span class="p">,</span> <span class="n">mu_ou</span><span class="p">,</span> <span class="n">sigma_ou</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizacion-de-las-trayectorias">
+<h3>3.4 Visualización de las Trayectorias<a class="headerlink" href="#visualizacion-de-las-trayectorias" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># GBM</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_gbm</span><span class="p">,</span> <span class="n">S_gbm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Movimiento Browniano Geométrico&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;S_t&#39;</span><span class="p">)</span>
+
+<span class="c1"># ABM</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_abm</span><span class="p">,</span> <span class="n">X_abm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Movimiento Browniano Aritmético&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;X_t&#39;</span><span class="p">)</span>
+
+<span class="c1"># OU</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_ou</span><span class="p">,</span> <span class="n">X_ou</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Proceso de Ornstein-Uhlenbeck&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;X_t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/959d6ab6ed0be47795f45c6a37142c6b41a670eeb48316aae428db58698da1d8.png" src="../_images/959d6ab6ed0be47795f45c6a37142c6b41a670eeb48316aae428db58698da1d8.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="estimacion-de-parametros-en-ecuaciones-diferenciales-estocasticas-con-algoritmos-geneticos">
+<h2>4. Estimación de Parámetros en Ecuaciones Diferenciales Estocásticas con Algoritmos Genéticos<a class="headerlink" href="#estimacion-de-parametros-en-ecuaciones-diferenciales-estocasticas-con-algoritmos-geneticos" title="Link to this heading">#</a></h2>
+<p>En esta sección, implementaremos un algoritmo genético desde cero. Los algoritmos genéticos son métodos de optimización inspirados en el proceso de selección natural y son especialmente útiles para problemas donde el espacio de búsqueda es grande o complejo.</p>
+<section id="construccion-de-funciones-de-densidad">
+<h3>4.1 Construcción de Funciones de Densidad<a class="headerlink" href="#construccion-de-funciones-de-densidad" title="Link to this heading">#</a></h3>
+<p>Usaremos estimación de densidad tipo nucleo para aproximar la distribución de los estados en cada instante.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">estimate_density</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">kde</span> <span class="o">=</span> <span class="n">gaussian_kde</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">kde</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="funcion-de-verosimilitud">
+<h3>4.2 Función de Verosimilitud<a class="headerlink" href="#funcion-de-verosimilitud" title="Link to this heading">#</a></h3>
+<p>Definimos la función de verosimilitud como el producto de las densidades evaluadas en los datos observados.
+Para evitar problemas numéricos, trabajamos con el logaritmo de la verosimilitud.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">log_likelihood</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;gbm&#39;</span><span class="p">:</span>
+        <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">params</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">S_sim</span> <span class="o">=</span> <span class="n">simulate_gbm</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;abm&#39;</span><span class="p">:</span>
+        <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">params</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">S_sim</span> <span class="o">=</span> <span class="n">simulate_abm</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;ou&#39;</span><span class="p">:</span>
+        <span class="n">theta</span><span class="p">,</span> <span class="n">mu_p</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">params</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">S_sim</span> <span class="o">=</span> <span class="n">simulate_ou</span><span class="p">(</span><span class="n">X0_ou</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">mu_p</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Modelo no reconocido&#39;</span><span class="p">)</span>
+
+    <span class="n">kde</span> <span class="o">=</span> <span class="n">estimate_density</span><span class="p">(</span><span class="n">S_sim</span><span class="p">)</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-10</span>  <span class="c1"># Pequeño valor para evitar log(0)</span>
+    <span class="n">likelihoods</span> <span class="o">=</span> <span class="n">kde</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">epsilon</span>
+    <span class="n">log_likelihood_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">likelihoods</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">log_likelihood_value</span>  <span class="c1"># Negativo para minimizar</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="estimacion-de-parametros-mediante-algoritmos-geneticos">
+<h3>4.3 Estimación de Parámetros mediante Algoritmos Genéticos<a class="headerlink" href="#estimacion-de-parametros-mediante-algoritmos-geneticos" title="Link to this heading">#</a></h3>
+<section id="introduccion-a-los-algoritmos-geneticos">
+<h4>4.3.1 Introducción a los Algoritmos Genéticos<a class="headerlink" href="#introduccion-a-los-algoritmos-geneticos" title="Link to this heading">#</a></h4>
+<p>Los algoritmos genéticos (AG) son métodos de optimización basados en los principios de la evolución biológica. Consisten en una población de posibles soluciones que evoluciona a lo largo de generaciones, aplicando operadores genéticos como selección, cruce (crossover) y mutación.</p>
+<p>Los pasos generales de un AG son:</p>
+<ol class="arabic simple">
+<li><p>Inicialización: Crear una población inicial de soluciones aleatorias.</p></li>
+<li><p>Evaluación: Calcular la aptitud (fitness) de cada individuo según una función objetivo.</p></li>
+<li><p>Selección: Seleccionar individuos para reproducirse basándose en su aptitud.</p></li>
+<li><p>Crossover: Combinar pares de individuos para producir descendencia.</p></li>
+<li><p>Mutación: Aplicar pequeñas modificaciones aleatorias a los descendientes.</p></li>
+<li><p>Reemplazo: Formar una nueva generación y repetir el proceso.</p></li>
+</ol>
+</section>
+</section>
+<section id="implementacion-del-algoritmo-genetico">
+<h3>4.4 Implementación del Algoritmo Genético<a class="headerlink" href="#implementacion-del-algoritmo-genetico" title="Link to this heading">#</a></h3>
+<p>Implementaremos un algoritmo genético para optimizar los parámetros de nuestros modelos estocásticos. El objetivo es minimizar la función de log-verosimilitud negativa.</p>
+</section>
+<section id="definicion-de-la-funcion-de-aptitud">
+<h3>4.4.1 Definición de la Función de Aptitud<a class="headerlink" href="#definicion-de-la-funcion-de-aptitud" title="Link to this heading">#</a></h3>
+<p>La función de aptitud es esencial en un AG, ya que determina qué tan “buena” es una solución. En nuestro caso, usaremos el logaritmo negativo de la verosimilitud como función de costo, por lo que la aptitud será inversamente proporcional al costo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fitness_function</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="n">log_likelihood</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">fitness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">cost</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fitness</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="implementacion-del-ag">
+<h4>4.4.2 Implementación del AG<a class="headerlink" href="#implementacion-del-ag" title="Link to this heading">#</a></h4>
+<p>Implementaremos el AG con los siguientes componentes:</p>
+<p>•	Población: Representada como una matriz donde cada fila es un individuo (un conjunto de parámetros).</p>
+<p>•	Selección por Ruleta (Roulette Wheel Selection): Probabilidad de ser seleccionado proporcional a la aptitud.</p>
+<p>•	Crossover Uniforme: Combinar parámetros de dos padres para crear hijos.</p>
+<p>•	Mutación Aleatoria: Añadir pequeñas perturbaciones a los parámetros.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tournament_selection</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">fitness_values</span><span class="p">,</span> <span class="n">tournament_size</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">selected</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">population_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">population_size</span><span class="p">):</span>
+        <span class="n">participants_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">population_size</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">tournament_size</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">participants_fitness</span> <span class="o">=</span> <span class="n">fitness_values</span><span class="p">[</span><span class="n">participants_idx</span><span class="p">]</span>
+        <span class="n">winner_idx</span> <span class="o">=</span> <span class="n">participants_idx</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">participants_fitness</span><span class="p">)]</span>
+        <span class="n">selected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">population</span><span class="p">[</span><span class="n">winner_idx</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">selected</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">crossover</span><span class="p">(</span><span class="n">parent1</span><span class="p">,</span> <span class="n">parent2</span><span class="p">):</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">parent1</span><span class="p">))</span>
+    <span class="n">child1</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">parent1</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">parent2</span>
+    <span class="n">child2</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">parent2</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">parent1</span>
+    <span class="k">return</span> <span class="n">child1</span><span class="p">,</span> <span class="n">child2</span>
+
+<span class="k">def</span> <span class="nf">mutate</span><span class="p">(</span><span class="n">individual</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">individual</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">mutation_rate</span><span class="p">:</span>
+            <span class="c1"># Mutación gaussiana</span>
+            <span class="n">mutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">bounds</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="n">individual</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">mutation</span>
+            <span class="c1"># Asegurar que el valor esté dentro de los límites</span>
+            <span class="n">individual</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">individual</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">individual</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">genetic_algorithm</span><span class="p">(</span><span class="n">fitness_function</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">population_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">generations</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">elitism</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">num_params</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
+    <span class="c1"># Inicialización de la población</span>
+    <span class="n">population</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">population_size</span><span class="p">,</span> <span class="n">num_params</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_params</span><span class="p">):</span>
+        <span class="n">population</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">population</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">bounds</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">best_fitness_history</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">best_individual</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">best_fitness</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+    <span class="k">for</span> <span class="n">gen</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">generations</span><span class="p">):</span>
+        <span class="c1"># Evaluación de la aptitud</span>
+        <span class="n">fitness_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">fitness_function</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">population</span><span class="p">])</span>
+
+        <span class="c1"># Actualizar el mejor individuo</span>
+        <span class="n">current_best_fitness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">fitness_values</span><span class="p">)</span>
+        <span class="n">current_best_individual</span> <span class="o">=</span> <span class="n">population</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">fitness_values</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="n">current_best_fitness</span> <span class="o">&gt;</span> <span class="n">best_fitness</span><span class="p">:</span>
+            <span class="n">best_fitness</span> <span class="o">=</span> <span class="n">current_best_fitness</span>
+            <span class="n">best_individual</span> <span class="o">=</span> <span class="n">current_best_individual</span>
+
+        <span class="n">best_fitness_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">best_fitness</span><span class="p">)</span>
+
+        <span class="c1"># Selección por torneo</span>
+        <span class="n">selected</span> <span class="o">=</span> <span class="n">tournament_selection</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">fitness_values</span><span class="p">)</span>
+
+        <span class="c1"># Crossover</span>
+        <span class="n">offspring</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">population_size</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">parent1</span> <span class="o">=</span> <span class="n">selected</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">parent2</span> <span class="o">=</span> <span class="n">selected</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">population_size</span><span class="p">]</span>
+            <span class="n">child1</span><span class="p">,</span> <span class="n">child2</span> <span class="o">=</span> <span class="n">crossover</span><span class="p">(</span><span class="n">parent1</span><span class="p">,</span> <span class="n">parent2</span><span class="p">)</span>
+            <span class="n">offspring</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">child1</span>
+            <span class="n">offspring</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">population_size</span><span class="p">]</span> <span class="o">=</span> <span class="n">child2</span>
+
+        <span class="c1"># Mutación</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">population_size</span><span class="p">):</span>
+            <span class="n">offspring</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mutate</span><span class="p">(</span><span class="n">offspring</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="p">)</span>
+
+        <span class="c1"># Implementar elitismo</span>
+        <span class="k">if</span> <span class="n">elitism</span><span class="p">:</span>
+            <span class="c1"># Reemplazar al peor individuo de la nueva generación por el mejor de la anterior</span>
+            <span class="n">worst_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">([</span><span class="n">fitness_function</span><span class="p">(</span><span class="n">ind</span><span class="p">)</span> <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">offspring</span><span class="p">])</span>
+            <span class="n">offspring</span><span class="p">[</span><span class="n">worst_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">best_individual</span>
+
+        <span class="c1"># Reemplazo</span>
+        <span class="n">population</span> <span class="o">=</span> <span class="n">offspring</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generación </span><span class="si">{</span><span class="n">gen</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: Mejor Aptitud = </span><span class="si">{</span><span class="n">best_fitness</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Gráfica de la aptitud</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">best_fitness_history</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Evolución de la Mejor Aptitud&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Generación&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Aptitud&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">best_individual</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="optimizacion-de-parametros-con-el-ag">
+<h3>4.5 Optimización de Parámetros con el AG<a class="headerlink" href="#optimizacion-de-parametros-con-el-ag" title="Link to this heading">#</a></h3>
+<p>Ahora aplicaremos el AG para estimar los parámetros de cada modelo.</p>
+<section id="id3">
+<h4>4.5.1 Movimiento Browniano Geométrico (GBM)<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<p>Configuración del AG</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parámetros comunes</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span>    <span class="c1"># Tiempo total</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>   <span class="c1"># Número de pasos</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># Para reproducibilidad</span>
+
+<span class="c1"># GBM</span>
+<span class="n">S0</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">mu_gbm_real</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">sigma_gbm_real</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">t_gbm</span><span class="p">,</span> <span class="n">S_gbm</span> <span class="o">=</span> <span class="n">simulate_gbm</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span> <span class="n">mu_gbm_real</span><span class="p">,</span> <span class="n">sigma_gbm_real</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimación de parámetros para GBM&quot;</span><span class="p">)</span>
+
+<span class="c1"># Datos observados</span>
+<span class="n">data_gbm</span> <span class="o">=</span> <span class="n">S_gbm</span>
+
+<span class="c1"># Crear la función de aptitud específica para GBM</span>
+<span class="n">fitness_gbm</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">fitness_function</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;gbm&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data_gbm</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># Límites de los parámetros: (mu, sigma)</span>
+<span class="n">bounds_gbm</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>  <span class="c1"># mu</span>
+              <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)]</span>  <span class="c1"># sigma</span>
+
+<span class="c1"># Ejecutar el algoritmo genético</span>
+<span class="n">best_params_gbm</span> <span class="o">=</span> <span class="n">genetic_algorithm</span><span class="p">(</span><span class="n">fitness_gbm</span><span class="p">,</span> <span class="n">bounds_gbm</span><span class="p">,</span>
+                                    <span class="n">population_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">generations</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">elitism</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">mu_gbm_est</span><span class="p">,</span> <span class="n">sigma_gbm_est</span> <span class="o">=</span> <span class="n">best_params_gbm</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parámetros reales GBM: mu = </span><span class="si">{</span><span class="n">mu_gbm_real</span><span class="si">}</span><span class="s2">, sigma = </span><span class="si">{</span><span class="n">sigma_gbm_real</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parámetros estimados GBM: mu = </span><span class="si">{</span><span class="n">mu_gbm_est</span><span class="si">}</span><span class="s2">, sigma = </span><span class="si">{</span><span class="n">sigma_gbm_est</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Simulación con parámetros estimados</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">S_gbm_est</span> <span class="o">=</span> <span class="n">simulate_gbm</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span> <span class="n">mu_gbm_est</span><span class="p">,</span> <span class="n">sigma_gbm_est</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># Visualización del path real y el simulado</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_gbm</span><span class="p">,</span> <span class="n">S_gbm</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Path Real&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_gbm</span><span class="p">,</span> <span class="n">S_gbm_est</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Simulación con Parámetros Estimados&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GBM: Comparación entre Path Real y Simulado&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Valor&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimación de parámetros para GBM
+Generación 1: Mejor Aptitud = 0.01705204159656125
+Generación 2: Mejor Aptitud = 0.017515780160061174
+Generación 3: Mejor Aptitud = 0.017515780160061174
+Generación 4: Mejor Aptitud = 0.017515780160061174
+Generación 5: Mejor Aptitud = 0.017515780160061174
+Generación 6: Mejor Aptitud = 0.018142913592497603
+Generación 7: Mejor Aptitud = 0.018142913592497603
+Generación 8: Mejor Aptitud = 0.018210038515976867
+Generación 9: Mejor Aptitud = 0.018602015230105816
+Generación 10: Mejor Aptitud = 0.018602015230105816
+Generación 11: Mejor Aptitud = 0.01963567105594386
+Generación 12: Mejor Aptitud = 0.01963567105594386
+Generación 13: Mejor Aptitud = 0.01963567105594386
+Generación 14: Mejor Aptitud = 0.01963567105594386
+Generación 15: Mejor Aptitud = 0.01963567105594386
+Generación 16: Mejor Aptitud = 0.01963567105594386
+Generación 17: Mejor Aptitud = 0.01963567105594386
+Generación 18: Mejor Aptitud = 0.01963567105594386
+Generación 19: Mejor Aptitud = 0.01963567105594386
+Generación 20: Mejor Aptitud = 0.01963567105594386
+Generación 21: Mejor Aptitud = 0.01963567105594386
+Generación 22: Mejor Aptitud = 0.01963567105594386
+Generación 23: Mejor Aptitud = 0.01963567105594386
+Generación 24: Mejor Aptitud = 0.01963567105594386
+Generación 25: Mejor Aptitud = 0.01963567105594386
+Generación 26: Mejor Aptitud = 0.01963567105594386
+Generación 27: Mejor Aptitud = 0.01963567105594386
+Generación 28: Mejor Aptitud = 0.01963567105594386
+Generación 29: Mejor Aptitud = 0.01963567105594386
+Generación 30: Mejor Aptitud = 0.01963567105594386
+Generación 31: Mejor Aptitud = 0.01963567105594386
+Generación 32: Mejor Aptitud = 0.01963567105594386
+Generación 33: Mejor Aptitud = 0.01963567105594386
+Generación 34: Mejor Aptitud = 0.01963567105594386
+Generación 35: Mejor Aptitud = 0.01963567105594386
+Generación 36: Mejor Aptitud = 0.01963567105594386
+Generación 37: Mejor Aptitud = 0.01963567105594386
+Generación 38: Mejor Aptitud = 0.01963567105594386
+Generación 39: Mejor Aptitud = 0.01963567105594386
+Generación 40: Mejor Aptitud = 0.01963567105594386
+Generación 41: Mejor Aptitud = 0.01963567105594386
+Generación 42: Mejor Aptitud = 0.01963567105594386
+Generación 43: Mejor Aptitud = 0.01963567105594386
+Generación 44: Mejor Aptitud = 0.01963567105594386
+Generación 45: Mejor Aptitud = 0.01963567105594386
+Generación 46: Mejor Aptitud = 0.01963567105594386
+Generación 47: Mejor Aptitud = 0.01963567105594386
+Generación 48: Mejor Aptitud = 0.01963567105594386
+Generación 49: Mejor Aptitud = 0.01963567105594386
+Generación 50: Mejor Aptitud = 0.01963567105594386
+</pre></div>
+</div>
+<img alt="../_images/8657c71453b77827cc43a25ac39fd457ffc03f04a20358eeaca4325fe63249fa.png" src="../_images/8657c71453b77827cc43a25ac39fd457ffc03f04a20358eeaca4325fe63249fa.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parámetros reales GBM: mu = 0.05, sigma = 0.2
+Parámetros estimados GBM: mu = 0.06195048732732238, sigma = 0.30174948115207323
+</pre></div>
+</div>
+<img alt="../_images/f4f0ac4764bf83937994d81cdb340581a9135d086c3877a1203c7729afe9d6fe.png" src="../_images/f4f0ac4764bf83937994d81cdb340581a9135d086c3877a1203c7729afe9d6fe.png" />
+</div>
+</div>
+</section>
+<section id="id4">
+<h4>4.5.2 Movimiento Browniano Aritmético (ABM)<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ABM</span>
+<span class="n">X0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">mu_abm_real</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">sigma_abm_real</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">t_abm</span><span class="p">,</span> <span class="n">X_abm</span> <span class="o">=</span> <span class="n">simulate_abm</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">mu_abm_real</span><span class="p">,</span> <span class="n">sigma_abm_real</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Estimación de parámetros para ABM&quot;</span><span class="p">)</span>
+
+<span class="c1"># Datos observados</span>
+<span class="n">data_abm</span> <span class="o">=</span> <span class="n">X_abm</span>
+
+<span class="c1"># Crear la función de aptitud específica para ABM</span>
+<span class="n">fitness_abm</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">fitness_function</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;abm&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data_abm</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># Límites de los parámetros: (mu, sigma)</span>
+<span class="n">bounds_abm</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>  <span class="c1"># mu</span>
+              <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)]</span>   <span class="c1"># sigma</span>
+
+<span class="c1"># Ejecutar el algoritmo genético</span>
+<span class="n">best_params_abm</span> <span class="o">=</span> <span class="n">genetic_algorithm</span><span class="p">(</span><span class="n">fitness_abm</span><span class="p">,</span> <span class="n">bounds_abm</span><span class="p">,</span>
+                                    <span class="n">population_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">generations</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">elitism</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">mu_abm_est</span><span class="p">,</span> <span class="n">sigma_abm_est</span> <span class="o">=</span> <span class="n">best_params_abm</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parámetros reales ABM: mu = </span><span class="si">{</span><span class="n">mu_abm_real</span><span class="si">}</span><span class="s2">, sigma = </span><span class="si">{</span><span class="n">sigma_abm_real</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parámetros estimados ABM: mu = </span><span class="si">{</span><span class="n">mu_abm_est</span><span class="si">}</span><span class="s2">, sigma = </span><span class="si">{</span><span class="n">sigma_abm_est</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Simulación con parámetros estimados</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">X_abm_est</span> <span class="o">=</span> <span class="n">simulate_abm</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">mu_abm_est</span><span class="p">,</span> <span class="n">sigma_abm_est</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># Visualización del path real y el simulado</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_abm</span><span class="p">,</span> <span class="n">X_abm</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Path Real&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_abm</span><span class="p">,</span> <span class="n">X_abm_est</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Simulación con Parámetros Estimados&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ABM: Comparación entre Path Real y Simulado&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Valor&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimación de parámetros para ABM
+Generación 1: Mejor Aptitud = 0.8736870059041066
+Generación 2: Mejor Aptitud = 0.8745363646368942
+Generación 3: Mejor Aptitud = 1.1079195077653594
+Generación 4: Mejor Aptitud = 1.1620174269050947
+Generación 5: Mejor Aptitud = 1.18415434198275
+Generación 6: Mejor Aptitud = 1.18415434198275
+Generación 7: Mejor Aptitud = 1.18415434198275
+Generación 8: Mejor Aptitud = 1.18415434198275
+Generación 9: Mejor Aptitud = 1.2070840065752648
+Generación 10: Mejor Aptitud = 1.2070840065752648
+Generación 11: Mejor Aptitud = 1.224055997254
+Generación 12: Mejor Aptitud = 1.224055997254
+Generación 13: Mejor Aptitud = 1.224055997254
+Generación 14: Mejor Aptitud = 1.224055997254
+Generación 15: Mejor Aptitud = 1.224055997254
+Generación 16: Mejor Aptitud = 1.224055997254
+Generación 17: Mejor Aptitud = 1.224055997254
+Generación 18: Mejor Aptitud = 1.2346328142032785
+Generación 19: Mejor Aptitud = 1.2346328142032785
+Generación 20: Mejor Aptitud = 1.2346328142032785
+Generación 21: Mejor Aptitud = 1.2346328142032785
+Generación 22: Mejor Aptitud = 1.2346328142032785
+Generación 23: Mejor Aptitud = 1.2346328142032785
+Generación 24: Mejor Aptitud = 1.2346328142032785
+Generación 25: Mejor Aptitud = 1.2346328142032785
+Generación 26: Mejor Aptitud = 1.2346328142032785
+Generación 27: Mejor Aptitud = 1.2346328142032785
+Generación 28: Mejor Aptitud = 1.2346328142032785
+Generación 29: Mejor Aptitud = 1.2346328142032785
+Generación 30: Mejor Aptitud = 1.2346328142032785
+Generación 31: Mejor Aptitud = 1.2346328142032785
+Generación 32: Mejor Aptitud = 1.2346328142032785
+Generación 33: Mejor Aptitud = 1.2346328142032785
+Generación 34: Mejor Aptitud = 1.2346328142032785
+Generación 35: Mejor Aptitud = 1.2346328142032785
+Generación 36: Mejor Aptitud = 1.2346328142032785
+Generación 37: Mejor Aptitud = 1.2346328142032785
+Generación 38: Mejor Aptitud = 1.2346328142032785
+Generación 39: Mejor Aptitud = 1.2409779204081681
+Generación 40: Mejor Aptitud = 1.2409779204081681
+Generación 41: Mejor Aptitud = 1.2409779204081681
+Generación 42: Mejor Aptitud = 1.2409779204081681
+Generación 43: Mejor Aptitud = 1.2409779204081681
+Generación 44: Mejor Aptitud = 1.2409779204081681
+Generación 45: Mejor Aptitud = 1.2409779204081681
+Generación 46: Mejor Aptitud = 1.2409779204081681
+Generación 47: Mejor Aptitud = 1.2409779204081681
+Generación 48: Mejor Aptitud = 1.2409779204081681
+Generación 49: Mejor Aptitud = 1.2409779204081681
+Generación 50: Mejor Aptitud = 1.2409779204081681
+</pre></div>
+</div>
+<img alt="../_images/2b0a2adeeb0b46ab191fd5e4240e8d9585017849fde12acb8c09ca54f73d214c.png" src="../_images/2b0a2adeeb0b46ab191fd5e4240e8d9585017849fde12acb8c09ca54f73d214c.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parámetros reales ABM: mu = 0.05, sigma = 0.2
+Parámetros estimados ABM: mu = -0.0015520114668656185, sigma = 0.397662491157077
+</pre></div>
+</div>
+<img alt="../_images/e09cbfdb6995a14c55d2f3440d28da54ad29417b778b452f7f27a5f7a158b43b.png" src="../_images/e09cbfdb6995a14c55d2f3440d28da54ad29417b778b452f7f27a5f7a158b43b.png" />
+</div>
+</div>
+</section>
+<section id="proceso-de-ornstein-uhlenbeck-ou">
+<h4>4.5.3 Proceso de Ornstein-Uhlenbeck (OU)<a class="headerlink" href="#proceso-de-ornstein-uhlenbeck-ou" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># OU</span>
+<span class="n">X0_ou</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">theta_ou_real</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">mu_ou_real</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">sigma_ou_real</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">t_ou</span><span class="p">,</span> <span class="n">X_ou</span> <span class="o">=</span> <span class="n">simulate_ou</span><span class="p">(</span><span class="n">X0_ou</span><span class="p">,</span> <span class="n">theta_ou_real</span><span class="p">,</span> <span class="n">mu_ou_real</span><span class="p">,</span> <span class="n">sigma_ou_real</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Estimación de parámetros para OU&quot;</span><span class="p">)</span>
+
+<span class="c1"># Datos observados</span>
+<span class="n">data_ou</span> <span class="o">=</span> <span class="n">X_ou</span>
+
+<span class="c1"># Crear la función de aptitud específica para OU</span>
+<span class="n">fitness_ou</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">fitness_function</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;ou&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data_ou</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># Límites de los parámetros: (theta, mu, sigma)</span>
+<span class="n">bounds_ou</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>   <span class="c1"># theta</span>
+             <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">),</span>  <span class="c1"># mu</span>
+             <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)]</span>   <span class="c1"># sigma</span>
+
+<span class="c1"># Ejecutar el algoritmo genético</span>
+<span class="n">best_params_ou</span> <span class="o">=</span> <span class="n">genetic_algorithm</span><span class="p">(</span><span class="n">fitness_ou</span><span class="p">,</span> <span class="n">bounds_ou</span><span class="p">,</span>
+                                   <span class="n">population_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">generations</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">mutation_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">elitism</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">theta_ou_est</span><span class="p">,</span> <span class="n">mu_ou_est</span><span class="p">,</span> <span class="n">sigma_ou_est</span> <span class="o">=</span> <span class="n">best_params_ou</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parámetros reales OU: theta = </span><span class="si">{</span><span class="n">theta_ou_real</span><span class="si">}</span><span class="s2">, mu = </span><span class="si">{</span><span class="n">mu_ou_real</span><span class="si">}</span><span class="s2">, sigma = </span><span class="si">{</span><span class="n">sigma_ou_real</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parámetros estimados OU: theta = </span><span class="si">{</span><span class="n">theta_ou_est</span><span class="si">}</span><span class="s2">, mu = </span><span class="si">{</span><span class="n">mu_ou_est</span><span class="si">}</span><span class="s2">, sigma = </span><span class="si">{</span><span class="n">sigma_ou_est</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Simulación con parámetros estimados</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">X_ou_est</span> <span class="o">=</span> <span class="n">simulate_ou</span><span class="p">(</span><span class="n">X0_ou</span><span class="p">,</span> <span class="n">theta_ou_est</span><span class="p">,</span> <span class="n">mu_ou_est</span><span class="p">,</span> <span class="n">sigma_ou_est</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># Visualización del path real y el simulado</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_ou</span><span class="p">,</span> <span class="n">X_ou</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Path Real&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_ou</span><span class="p">,</span> <span class="n">X_ou_est</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Simulación con Parámetros Estimados&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;OU: Comparación entre Path Real y Simulado&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Valor&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimación de parámetros para OU
+Generación 1: Mejor Aptitud = 1.2940693660187346
+Generación 2: Mejor Aptitud = 1.3013346588760744
+Generación 3: Mejor Aptitud = 1.3013346588760744
+Generación 4: Mejor Aptitud = 1.3591322870026223
+Generación 5: Mejor Aptitud = 1.3591322870026223
+Generación 6: Mejor Aptitud = 1.3591322870026223
+Generación 7: Mejor Aptitud = 1.3591322870026223
+Generación 8: Mejor Aptitud = 1.3591322870026223
+Generación 9: Mejor Aptitud = 1.3591322870026223
+Generación 10: Mejor Aptitud = 1.3591322870026223
+Generación 11: Mejor Aptitud = 1.3591322870026223
+Generación 12: Mejor Aptitud = 1.3591322870026223
+Generación 13: Mejor Aptitud = 1.3591322870026223
+Generación 14: Mejor Aptitud = 1.3745820091153111
+Generación 15: Mejor Aptitud = 1.3785826963137235
+Generación 16: Mejor Aptitud = 1.3785826963137235
+Generación 17: Mejor Aptitud = 1.3785826963137235
+Generación 18: Mejor Aptitud = 1.3785826963137235
+Generación 19: Mejor Aptitud = 1.3785826963137235
+Generación 20: Mejor Aptitud = 1.3785826963137235
+Generación 21: Mejor Aptitud = 1.3785826963137235
+Generación 22: Mejor Aptitud = 1.3785826963137235
+Generación 23: Mejor Aptitud = 1.3785826963137235
+Generación 24: Mejor Aptitud = 1.3785826963137235
+Generación 25: Mejor Aptitud = 1.3785826963137235
+Generación 26: Mejor Aptitud = 1.3785826963137235
+Generación 27: Mejor Aptitud = 1.3785826963137235
+Generación 28: Mejor Aptitud = 1.3785826963137235
+Generación 29: Mejor Aptitud = 1.3785826963137235
+Generación 30: Mejor Aptitud = 1.3785826963137235
+Generación 31: Mejor Aptitud = 1.3888530101558128
+Generación 32: Mejor Aptitud = 1.3888530101558128
+Generación 33: Mejor Aptitud = 1.3888530101558128
+Generación 34: Mejor Aptitud = 1.3888530101558128
+Generación 35: Mejor Aptitud = 1.3888530101558128
+Generación 36: Mejor Aptitud = 1.3888530101558128
+Generación 37: Mejor Aptitud = 1.3888530101558128
+Generación 38: Mejor Aptitud = 1.3888530101558128
+Generación 39: Mejor Aptitud = 1.3888530101558128
+Generación 40: Mejor Aptitud = 1.3888530101558128
+Generación 41: Mejor Aptitud = 1.3888530101558128
+Generación 42: Mejor Aptitud = 1.3888530101558128
+Generación 43: Mejor Aptitud = 1.3888530101558128
+Generación 44: Mejor Aptitud = 1.3888530101558128
+Generación 45: Mejor Aptitud = 1.3888530101558128
+Generación 46: Mejor Aptitud = 1.3888530101558128
+Generación 47: Mejor Aptitud = 1.3888530101558128
+Generación 48: Mejor Aptitud = 1.4423588618424614
+Generación 49: Mejor Aptitud = 1.4423588618424614
+Generación 50: Mejor Aptitud = 1.4423588618424614
+</pre></div>
+</div>
+<img alt="../_images/e29b8681e8378fc444c502eea75cb43cabe0dc744e698c17595c749093d53354.png" src="../_images/e29b8681e8378fc444c502eea75cb43cabe0dc744e698c17595c749093d53354.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parámetros reales OU: theta = 0.7, mu = 1.0, sigma = 0.3
+Parámetros estimados OU: theta = 0.6531188156555873, mu = 1.4870227725978236, sigma = 0.19879435966050435
+</pre></div>
+</div>
+<img alt="../_images/7882259b620d56bcdb01db913a4fdc0a89f6b1a6e130cf1c9223317592ddd46c.png" src="../_images/7882259b620d56bcdb01db913a4fdc0a89f6b1a6e130cf1c9223317592ddd46c.png" />
+</div>
+</div>
+</section>
+<section id="calculo-de-la-log-verosimilitud">
+<h4>4.5.4 Cálculo de la Log-Verosimilitud<a class="headerlink" href="#calculo-de-la-log-verosimilitud" title="Link to this heading">#</a></h4>
+<p>Una vez obtenidos los parámetros, podemos calcular la log-verosimilitud:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cálculo de las log-verosimilitudes</span>
+<span class="n">ll_gbm</span> <span class="o">=</span> <span class="o">-</span><span class="n">log_likelihood</span><span class="p">([</span><span class="n">mu_gbm_est</span><span class="p">,</span> <span class="n">sigma_gbm_est</span><span class="p">],</span> <span class="s1">&#39;gbm&#39;</span><span class="p">,</span> <span class="n">data_gbm</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">ll_abm</span> <span class="o">=</span> <span class="o">-</span><span class="n">log_likelihood</span><span class="p">([</span><span class="n">mu_abm_est</span><span class="p">,</span> <span class="n">sigma_abm_est</span><span class="p">],</span> <span class="s1">&#39;abm&#39;</span><span class="p">,</span> <span class="n">data_abm</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">ll_ou</span> <span class="o">=</span> <span class="o">-</span><span class="n">log_likelihood</span><span class="p">([</span><span class="n">theta_ou_est</span><span class="p">,</span> <span class="n">mu_ou_est</span><span class="p">,</span> <span class="n">sigma_ou_est</span><span class="p">],</span> <span class="s1">&#39;ou&#39;</span><span class="p">,</span> <span class="n">data_ou</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Log-Verosimilitudes:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GBM: </span><span class="si">{</span><span class="n">ll_gbm</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ABM: </span><span class="si">{</span><span class="n">ll_abm</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OU: </span><span class="si">{</span><span class="n">ll_ou</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Determinar el modelo más verosímil</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GBM&#39;</span><span class="p">,</span> <span class="s1">&#39;ABM&#39;</span><span class="p">,</span> <span class="s1">&#39;OU&#39;</span><span class="p">]</span>
+<span class="n">log_likelihoods</span> <span class="o">=</span> <span class="p">[</span><span class="n">ll_gbm</span><span class="p">,</span> <span class="n">ll_abm</span><span class="p">,</span> <span class="n">ll_ou</span><span class="p">]</span>
+
+<span class="n">best_model_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">log_likelihoods</span><span class="p">)</span>
+<span class="n">best_model</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="n">best_model_index</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">El modelo más verosímil es: </span><span class="si">{</span><span class="n">best_model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Log-Verosimilitudes:
+GBM: -4.2228977193095
+ABM: -0.28538241115267393
+OU: 0.2994876601703014
+
+El modelo más verosímil es: OU
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="generar-multiples-simulaciones-con-parametros-estimados">
+<h2>4.6 Generar múltiples simulaciones con parámetros estimados<a class="headerlink" href="#generar-multiples-simulaciones-con-parametros-estimados" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_simulations</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_gbm</span><span class="p">,</span> <span class="n">S_gbm</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Path Real&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_simulations</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">S_sim</span> <span class="o">=</span> <span class="n">simulate_gbm</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span> <span class="n">mu_gbm_est</span><span class="p">,</span> <span class="n">sigma_gbm_est</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_gbm</span><span class="p">,</span> <span class="n">S_sim</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GBM: Path Real y Simulaciones con Parámetros Estimados&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Valor&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_abm</span><span class="p">,</span> <span class="n">X_abm</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Path Real&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_simulations</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">X_sim</span> <span class="o">=</span> <span class="n">simulate_abm</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">mu_abm_est</span><span class="p">,</span> <span class="n">sigma_abm_est</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_abm</span><span class="p">,</span> <span class="n">X_sim</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ABM: Path Real y Simulaciones con Parámetros Estimados&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Valor&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_ou</span><span class="p">,</span> <span class="n">X_ou</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Path Real&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_simulations</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">X_sim</span> <span class="o">=</span> <span class="n">simulate_ou</span><span class="p">(</span><span class="n">X0_ou</span><span class="p">,</span> <span class="n">theta_ou_est</span><span class="p">,</span> <span class="n">mu_ou_est</span><span class="p">,</span> <span class="n">sigma_ou_est</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_ou</span><span class="p">,</span> <span class="n">X_sim</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;OU: Path Real y Simulaciones con Parámetros Estimados&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Valor&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4027c9adc8640c5c75dccaf59cc8a305a720321e5d2289ef2ecb17884f734221.png" src="../_images/4027c9adc8640c5c75dccaf59cc8a305a720321e5d2289ef2ecb17884f734221.png" />
+<img alt="../_images/12350306243b12339f130d7177c2cfb096ac75a85e56e21c61177c328e862668.png" src="../_images/12350306243b12339f130d7177c2cfb096ac75a85e56e21c61177c328e862668.png" />
+<img alt="../_images/402877af10011e5c4fe00f28fd70944fa091a2a972f583ad9ec72d86aafddea0.png" src="../_images/402877af10011e5c4fe00f28fd70944fa091a2a972f583ad9ec72d86aafddea0.png" />
+</div>
+</div>
+<section id="funciones-de-verosimilitud-exactas">
+<h3>4.7 Funciones de verosimilitud exactas<a class="headerlink" href="#funciones-de-verosimilitud-exactas" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">log_likelihood_gbm</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">params</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="n">N</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="n">log_likelihood</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">)):</span>
+        <span class="n">drift</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">dt</span>
+        <span class="n">diffusion</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+        <span class="n">expected_log_return</span> <span class="o">=</span> <span class="n">drift</span>
+        <span class="n">observed_log_return</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">variance</span> <span class="o">=</span> <span class="n">diffusion</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">log_likelihood</span> <span class="o">+=</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">variance</span><span class="p">)</span> <span class="o">-</span> <span class="p">((</span><span class="n">observed_log_return</span> <span class="o">-</span> <span class="n">expected_log_return</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">variance</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">log_likelihood</span>
+
+<span class="k">def</span> <span class="nf">log_likelihood_abm</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">params</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="n">N</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="n">log_likelihood</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">dt</span>
+        <span class="n">variance</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">dt</span>
+        <span class="n">observed</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">log_likelihood</span> <span class="o">+=</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">variance</span><span class="p">)</span> <span class="o">-</span> <span class="p">((</span><span class="n">observed</span> <span class="o">-</span> <span class="n">expected</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">variance</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">log_likelihood</span>
+
+<span class="k">def</span> <span class="nf">log_likelihood_ou</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">theta</span><span class="p">,</span> <span class="n">mu_param</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">params</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="n">N</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="n">log_likelihood</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="n">mu_param</span> <span class="o">+</span> <span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu_param</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">theta</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span>
+        <span class="n">variance</span> <span class="o">=</span> <span class="p">(</span><span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">theta</span> <span class="o">*</span> <span class="n">dt</span><span class="p">))</span>
+        <span class="n">observed</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">log_likelihood</span> <span class="o">+=</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">variance</span><span class="p">)</span> <span class="o">-</span> <span class="p">((</span><span class="n">observed</span> <span class="o">-</span> <span class="n">expected</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">variance</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">log_likelihood</span>
+
+<span class="c1"># 4. Definir las funciones objetivo</span>
+
+<span class="k">def</span> <span class="nf">objective_function_gbm</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">log_likelihood_gbm</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">data_gbm</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">objective_function_abm</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">log_likelihood_abm</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">data_abm</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">objective_function_ou</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">log_likelihood_ou</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">data_ou</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># 5. Optimización local con scipy.optimize.minimize</span>
+
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+
+<span class="c1"># Límites de los parámetros</span>
+<span class="n">bounds_gbm</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="kc">None</span><span class="p">)]</span>
+<span class="n">bounds_abm</span> <span class="o">=</span> <span class="p">[(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="kc">None</span><span class="p">)]</span>
+<span class="n">bounds_ou</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="kc">None</span><span class="p">)]</span>
+
+<span class="c1"># 5.1 GBM</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Refinamiento de parámetros para GBM utilizando L-BFGS-B&quot;</span><span class="p">)</span>
+<span class="n">x0_gbm</span> <span class="o">=</span> <span class="n">best_params_gbm</span>
+<span class="n">result_gbm</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">objective_function_gbm</span><span class="p">,</span> <span class="n">x0_gbm</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;L-BFGS-B&#39;</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds_gbm</span><span class="p">)</span>
+<span class="n">mu_gbm_refined</span><span class="p">,</span> <span class="n">sigma_gbm_refined</span> <span class="o">=</span> <span class="n">result_gbm</span><span class="o">.</span><span class="n">x</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parámetros refinados GBM: mu = </span><span class="si">{</span><span class="n">mu_gbm_refined</span><span class="si">}</span><span class="s2">, sigma = </span><span class="si">{</span><span class="n">sigma_gbm_refined</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parámetros reales GBM: mu = </span><span class="si">{</span><span class="n">mu_gbm_real</span><span class="si">}</span><span class="s2">, sigma = </span><span class="si">{</span><span class="n">sigma_gbm_real</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># 5.2 ABM</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Refinamiento de parámetros para ABM utilizando L-BFGS-B&quot;</span><span class="p">)</span>
+<span class="n">x0_abm</span> <span class="o">=</span> <span class="n">best_params_abm</span>
+<span class="n">result_abm</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">objective_function_abm</span><span class="p">,</span> <span class="n">x0_abm</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;L-BFGS-B&#39;</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds_abm</span><span class="p">)</span>
+<span class="n">mu_abm_refined</span><span class="p">,</span> <span class="n">sigma_abm_refined</span> <span class="o">=</span> <span class="n">result_abm</span><span class="o">.</span><span class="n">x</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parámetros refinados ABM: mu = </span><span class="si">{</span><span class="n">mu_abm_refined</span><span class="si">}</span><span class="s2">, sigma = </span><span class="si">{</span><span class="n">sigma_abm_refined</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parámetros reales ABM: mu = </span><span class="si">{</span><span class="n">mu_abm_real</span><span class="si">}</span><span class="s2">, sigma = </span><span class="si">{</span><span class="n">sigma_abm_real</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># 5.3 OU</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Refinamiento de parámetros para OU utilizando L-BFGS-B&quot;</span><span class="p">)</span>
+<span class="n">x0_ou</span> <span class="o">=</span> <span class="n">best_params_ou</span>
+<span class="n">result_ou</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">objective_function_ou</span><span class="p">,</span> <span class="n">x0_ou</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;L-BFGS-B&#39;</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds_ou</span><span class="p">)</span>
+<span class="n">theta_ou_refined</span><span class="p">,</span> <span class="n">mu_ou_refined</span><span class="p">,</span> <span class="n">sigma_ou_refined</span> <span class="o">=</span> <span class="n">result_ou</span><span class="o">.</span><span class="n">x</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parámetros refinados OU: theta = </span><span class="si">{</span><span class="n">theta_ou_refined</span><span class="si">}</span><span class="s2">, mu = </span><span class="si">{</span><span class="n">mu_ou_refined</span><span class="si">}</span><span class="s2">, sigma = </span><span class="si">{</span><span class="n">sigma_ou_refined</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parámetros reales OU: theta = </span><span class="si">{</span><span class="n">theta_ou_real</span><span class="si">}</span><span class="s2">, mu = </span><span class="si">{</span><span class="n">mu_ou_real</span><span class="si">}</span><span class="s2">, sigma = </span><span class="si">{</span><span class="n">sigma_ou_real</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Refinamiento de parámetros para GBM utilizando L-BFGS-B
+Parámetros refinados GBM: mu = 0.4419927555717823, sigma = 0.19564649697941197
+Parámetros reales GBM: mu = 0.05, sigma = 0.2
+
+Refinamiento de parámetros para ABM utilizando L-BFGS-B
+Parámetros refinados ABM: mu = 0.7499375145793554, sigma = 0.20333189353069875
+Parámetros reales ABM: mu = 0.05, sigma = 0.2
+
+Refinamiento de parámetros para OU utilizando L-BFGS-B
+Parámetros refinados OU: theta = 1.5509437644059163, mu = 0.7876927891888655, sigma = 0.3018566370119983
+Parámetros reales OU: theta = 0.7, mu = 1.0, sigma = 0.3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_simulations</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_gbm</span><span class="p">,</span> <span class="n">S_gbm</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Path Real&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_simulations</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">S_sim</span> <span class="o">=</span> <span class="n">simulate_gbm</span><span class="p">(</span><span class="n">S0</span><span class="p">,</span> <span class="n">mu_gbm_refined</span><span class="p">,</span> <span class="n">sigma_gbm_refined</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_gbm</span><span class="p">,</span> <span class="n">S_sim</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GBM: Path Real y Simulaciones con Parámetros Estimados&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Valor&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_abm</span><span class="p">,</span> <span class="n">X_abm</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Path Real&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_simulations</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">X_sim</span> <span class="o">=</span> <span class="n">simulate_abm</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">mu_abm_refined</span><span class="p">,</span> <span class="n">sigma_abm_refined</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_abm</span><span class="p">,</span> <span class="n">X_sim</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ABM: Path Real y Simulaciones con Parámetros Estimados&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Valor&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_ou</span><span class="p">,</span> <span class="n">X_ou</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Path Real&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_simulations</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">X_sim</span> <span class="o">=</span> <span class="n">simulate_ou</span><span class="p">(</span><span class="n">X0_ou</span><span class="p">,</span> <span class="n">theta_ou_refined</span><span class="p">,</span> <span class="n">mu_ou_refined</span><span class="p">,</span> <span class="n">sigma_ou_refined</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_ou</span><span class="p">,</span> <span class="n">X_sim</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;OU: Path Real y Simulaciones con Parámetros Estimados&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Valor&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/981d0d2af56a5eb08655de5b936dcf008534150c154ba397cd8059a9a1e158c3.png" src="../_images/981d0d2af56a5eb08655de5b936dcf008534150c154ba397cd8059a9a1e158c3.png" />
+<img alt="../_images/623860ba9837ab8c3406971a4b93efa22d77afb8ebab99f72bf43bc89e5b1d2b.png" src="../_images/623860ba9837ab8c3406971a4b93efa22d77afb8ebab99f72bf43bc89e5b1d2b.png" />
+<img alt="../_images/d28ea83db4658e33c7ac7f9eaf9b0db7e576a5074dc593102d7045deded6d3be.png" src="../_images/d28ea83db4658e33c7ac7f9eaf9b0db7e576a5074dc593102d7045deded6d3be.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./proyectos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="proyecto3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Capsnet</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Estimación de Parámetros en Ecuaciones Diferenciales Estocásticas (En desarrollo)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-parametros-en-ecuaciones-diferenciales-estocasticas">Estimación de Parámetros en Ecuaciones Diferenciales Estocásticas</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-las-ecuaciones-diferenciales-estocasticas-ede">1. Introducción a las Ecuaciones Diferenciales Estocásticas (EDE)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#movimiento-browniano-geometrico-gbm">1.1 Movimiento Browniano Geométrico (GBM)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#movimiento-browniano-aritmetico-abm">1.2 Movimiento Browniano Aritmético (ABM)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proceso-de-ornstein-uhlenbeck-reversion-a-la-media">1.3 Proceso de Ornstein-Uhlenbeck (Reversión a la Media)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-euler-maruyama">2. Método de Euler-Maruyama</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-en-python">3. Implementación en Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.2.1 Movimiento Browniano Geométrico (GBM)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2.2 Movimiento Browniano Aritmético (ABM)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proceso-de-ornstein-uhlenbeck">3.2.3 Proceso de Ornstein-Uhlenbeck</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simular-trayectorias">3.3 Simular Trayectorias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-las-trayectorias">3.4 Visualización de las Trayectorias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-parametros-en-ecuaciones-diferenciales-estocasticas-con-algoritmos-geneticos">4. Estimación de Parámetros en Ecuaciones Diferenciales Estocásticas con Algoritmos Genéticos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-funciones-de-densidad">4.1 Construcción de Funciones de Densidad</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-de-verosimilitud">4.2 Función de Verosimilitud</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-parametros-mediante-algoritmos-geneticos">4.3 Estimación de Parámetros mediante Algoritmos Genéticos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-los-algoritmos-geneticos">4.3.1 Introducción a los Algoritmos Genéticos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-del-algoritmo-genetico">4.4 Implementación del Algoritmo Genético</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-la-funcion-de-aptitud">4.4.1 Definición de la Función de Aptitud</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-del-ag">4.4.2 Implementación del AG</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizacion-de-parametros-con-el-ag">4.5 Optimización de Parámetros con el AG</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.5.1 Movimiento Browniano Geométrico (GBM)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.5.2 Movimiento Browniano Aritmético (ABM)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proceso-de-ornstein-uhlenbeck-ou">4.5.3 Proceso de Ornstein-Uhlenbeck (OU)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-la-log-verosimilitud">4.5.4 Cálculo de la Log-Verosimilitud</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generar-multiples-simulaciones-con-parametros-estimados">4.6 Generar múltiples simulaciones con parámetros estimados</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-verosimilitud-exactas">4.7 Funciones de verosimilitud exactas</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Christian Álvarez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

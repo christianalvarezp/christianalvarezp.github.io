@@ -10,4 +10,6 @@ chapters:
     title: "Proyecto 2: Programación no lineal con pytorch"
   - file: proyectos/proyecto3
     title: "Proyecto 3: Capsnet"
+  - file: proyectos/proyecto4
+    title: "Proyecto 4: Estimación de Parámetros en Ecuaciones Diferenciales Estocásticas"
   # Añade más capítulos según tus notebooks
